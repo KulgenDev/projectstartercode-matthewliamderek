@@ -2,7 +2,6 @@ import pygame
 import sys
 import weapon_module
 import math
-import numpy
 
 
 class Player:
@@ -59,9 +58,10 @@ def main():
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
-                angle = numpy.arctan((pos[1] - player.y)/(pos[0] - player.x))
+                angle = math.atan((pos[1] - player.y)/(pos[0] - player.x))
                 if pos[0] - player.x < 0:
                     angle += math.pi
+#                bullets.append(testBullet(screen, player.x, player.y, angle))
 
         screen.fill((0, 0, 0))
 
