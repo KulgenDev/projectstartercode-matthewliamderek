@@ -34,21 +34,43 @@ def main():
 
         ##DRAW BACKGROUND:::
 
+
+        ## BLACK LINES AROUND RECKTANGLES
+
         #left side
-        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(0, 0, 120, 250))
-        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(0, 550, 120, 250))
+        pygame.draw.rect(screen, (0,0,0), pygame.Rect(0, 0, 120, 250),10)
+        pygame.draw.rect(screen, (0,0,0), pygame.Rect(0, 550, 120, 250),10)
 
         #top side
-        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(0, 0, 250, 120))
-        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(500, 0, 250, 120))
+        pygame.draw.rect(screen, (0,0,0), pygame.Rect(0, 0, 250, 120),10)
+        pygame.draw.rect(screen, (0,0,0), pygame.Rect(500, 0, 250, 120),10)
 
         #right side
-        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(screen.get_width()-120, 0, 120, 250))
-        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(screen.get_width()-120, 550, 120, 250))
+        pygame.draw.rect(screen, (0,0,0), pygame.Rect(screen.get_width()-120, 0, 120, 250),10)
+        pygame.draw.rect(screen, (0,0,0), pygame.Rect(screen.get_width()-120, 550, 120, 250),10)
 
         #bottom side
-        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(0, screen.get_height()-120, 250, 120))
-        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(500, screen.get_height()-120, 250, 120))
+        pygame.draw.rect(screen, (0,0,0), pygame.Rect(0, screen.get_height()-120, 250, 120),10)
+        pygame.draw.rect(screen, (0,0,0), pygame.Rect(500, screen.get_height()-120, 250, 120),10)
+
+
+
+        ##BROWN EDGE RECTANGLES
+        #left side
+        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(0, 0, 110, 240))
+        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(0, 560, 110, 240))
+
+        #top side
+        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(0, 0, 240, 110))
+        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(510, 0, 250, 110))
+
+        #right side
+        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(screen.get_width()-110, 0, 120, 240))
+        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(screen.get_width()-110, 560, 120, 250))
+
+        #bottom side
+        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(0, screen.get_height()-110, 240, 120))
+        pygame.draw.rect(screen, (56, 40, 16), pygame.Rect(510, screen.get_height()-110, 250, 120))
 
 
 
