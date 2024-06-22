@@ -2,6 +2,8 @@ import pygame
 import sys
 import random
 import time
+import player_module
+import enemy_module
 
 
 def main():
