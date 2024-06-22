@@ -5,6 +5,7 @@ import time
 import player_module
 import enemy_module
 import enemy_manager
+import time
 
 
 def main():
@@ -22,7 +23,11 @@ def main():
     enemies.add_enemy()
     # let's set the framerate
     clock = pygame.time.Clock()
+    init_clock = time.time()
+
+    spawn_time = 3
     while True:
+        final_clock = time.time()
         clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
@@ -81,6 +86,10 @@ def main():
 
 
         ## START GAME CODE HERE::
+        if final_clock - init_clock > spawn_time:
+            enemies.add_enemy()
+            init_clock = final_clock
+
         enemies.spawn_enemies()
         enemies.move_enemies()
         player.draw()
