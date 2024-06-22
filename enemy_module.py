@@ -32,7 +32,9 @@ class Enemy():
         location_of_player = (self.player.x, self.player.y)
         if location_of_player[0] != self.x:
             angle = math.atan((location_of_player[1] - self.y)/(location_of_player[0] - self.x))
-
+        if self.x > location_of_player[0]:
+            angle += math.pi
+        #print(math.cos(angle), math.sin(angle))
         self.x += self.speed*math.cos(angle)
         self.y += self.speed*math.sin(angle)
 
