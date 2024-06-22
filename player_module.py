@@ -50,7 +50,7 @@ def main():
     pygame.display.set_caption("Testing the Player")
     screen = pygame.display.set_mode((640, 650))
     player = Player(screen, 300, 300, 3)
-    bullets = []
+#    bullets = []
 
     while True:
         clock.tick(60)
@@ -66,9 +66,9 @@ def main():
 
         screen.fill((0, 0, 0))
 
-        for b in bullets:
-            b.move()
-            b.draw()
+#        for b in bullets:
+#            b.move()
+#            b.draw()
 
 
 
