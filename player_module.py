@@ -49,6 +49,7 @@ def main():
     pygame.display.set_caption("Testing the Player")
     screen = pygame.display.set_mode((640, 650))
     player = Player(screen, 300, 300, 3)
+    weapon = weapon_module.Weapon(screen)
 #    bullets = []
 
     while True:
@@ -58,16 +59,18 @@ def main():
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
-                angle = math.atan((pos[1] - player.y)/(pos[0] - player.x))
-                if pos[0] - player.x < 0:
-                    angle += math.pi
-#                bullets.append(testBullet(screen, player.x, player.y, angle))
+                if not (pos[0] - player.x == 0):
+                    angle = math.atan((pos[1] - player.y)/(pos[0] - player.x))
+                    if pos[0] - player.x < 0:
+                        angle += math.pi
+#                   bullets.append(testBullet(screen, player.x, player.y, angle))
+                    weapon.fire(player.x, player.y , angle)
 
         screen.fill((0, 0, 0))
 
-#        for b in bullets:
-#            b.move()
-#            b.draw()
+        for b in weapon.bullets:
+            b.move()
+            b.draw()
 
 
 

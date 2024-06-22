@@ -4,13 +4,12 @@ import math
 import bullets_module
 
 class Weapon:
-    def __init__(self, screen, bulletType):
+    def __init__(self, screen):
         self.screen = screen
-        self.bulletType = bulletType
         self.bullets = []
 
-    def fire(self):
-        pass
+    def fire(self, x, y, angle):
+        self.bullets.append(bullets_module.Bullet(self.screen, x, y, 4, 4, pygame.Color("Blue"), angle))
 
 def main():
     pygame.init()
