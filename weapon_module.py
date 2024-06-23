@@ -7,9 +7,14 @@ class Weapon:
     def __init__(self, screen):
         self.screen = screen
         self.bullets = []
+        self.types = {"Bullet" : bullets_module.Bullet}
+        self.type = self.types["Bullet"]
 
     def fire(self, x, y, angle):
-        self.bullets.append(bullets_module.Bullet(self.screen, x, y, 4, 4, pygame.Color("Blue"), angle))
+        self.bullets.append(self.type(self.screen, x, y, 4, 4, pygame.Color("Blue"), angle))
+
+    def changeWeapon(self, type):
+        self.type = self.types[type]
 
 def main():
     pygame.init()
