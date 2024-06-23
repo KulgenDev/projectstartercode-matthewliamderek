@@ -12,9 +12,15 @@ class Weapon:
 
     def fire(self, x, y, angle):
         self.bullets.append(self.type(self.screen, x, y, 4, 4, pygame.Color("Blue"), angle))
+        self.bullets[len(self.bullets) - 1].spawn_sound()
 
     def changeWeapon(self, type):
         self.type = self.types[type]
+
+    def removeOffScreen(self):
+        for bullet in self.bullets:
+            if bullet.off_screen():
+                self.bullets.remove(bullet)
 
 def main():
     pygame.init()
