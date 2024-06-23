@@ -4,6 +4,8 @@ import random
 import time
 import player_module
 import enemy_module
+import enemy_manager
+import time
 
 
 def main():
@@ -16,10 +18,17 @@ def main():
 
     #REMOVE THE PYGAME.FULLSCREEN AT THE END TO MAKE IT NOT FORCE FULLSCREEN, IT WILL INSTEAD BE A SQUARE 800 by 800 window.
     screen = pygame.display.set_mode((800,800))
-
+    player = player_module.Player(screen,400,400,6)
+    enemies = enemy_manager.enemy_manager(screen,player)
+    enemies.add_enemy()
     # let's set the framerate
     clock = pygame.time.Clock()
+    init_clock = time.time()
+
+    spawn_time = 3
     while True:
+        final_clock = time.time()
+        clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
@@ -31,6 +40,7 @@ def main():
 
         # TODO: Fill the screen with whatever background color you like!
         screen.fill((110, 79, 33))
+
 
         ##DRAW BACKGROUND:::
 
@@ -75,10 +85,19 @@ def main():
 
 
 
+        ## START GAME CODE HERE::
+        if final_clock - init_clock > spawn_time:
+            enemies.add_enemy()
+            init_clock = final_clock
+
+        enemies.spawn_enemies()
+        enemies.move_enemies()
+        player.draw()
+        player.move()
         # TODO: Add your project code
 
         # don't forget the update, otherwise nothing will show up!
         pygame.display.update()
 
-if __name__ == "__main__":
-    main()
+
+main()
