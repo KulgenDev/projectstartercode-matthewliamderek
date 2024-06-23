@@ -4,6 +4,8 @@ import sys
 import player_module
 import math
 
+screen = pygame.display.set_mode((700, 700))
+
 class Bullet:
 
     def __init__(self, screen, x, y, width, height, color, angle):
@@ -18,10 +20,15 @@ class Bullet:
     def draw(self):
         pygame.draw.rect(self.screen, self.color, (self.x, self.y, self.width, self.height))
 
+
+    def spawn_sound(self):
+        bullet_sound = pygame.mixer.Sound("jasbro_laser.wav")
+        bullet_sound.play(0)
+
     def move(self):
         # take an angle and create a move direction
-        self.x += 1 * math.cos(self.angle)
-        self.y += 1 * math.sin(self.angle)
+        self.x += 7 * math.cos(self.angle)
+        self.y += 7 * math.sin(self.angle)
         points = []
         center_x = self.x + (self.width / 2)
         center_y = self.y + (self.height / 2)
@@ -43,30 +50,64 @@ class Bullet:
         pass
 
     def off_screen(self):
-        return (int(self.y) > int(self.screen.get_height())) or (int(self.y) < 0) or (int(self.x) > int(self.screen.get_width())) or (int(self.x) < int(0))
+        if self.y < 0:
+            return True
+        if self.y > self.screen.get_height():
+            return True
+        if self.x < 0:
+            return True
+        if self.x < self.screen.get_width():
+            return True
+        else:
+            return False
 
-test_list = []
+bullet_list = []
+
+def bullet_spawn():
+    # from player_module import angle
+    # ask matthew to make angle a global variable and then change math.radians(60) to angle
+    bullet = Bullet(screen, 350, 350, 2, 4, pygame.Color("Green"), math.radians(60))
+    bullet_list.append(bullet)
+    bullet_sound = pygame.mixer.Sound("jasbro_laser.wav")
+    bullet_sound.play(0)
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode((700, 700))
     clock = pygame.time.Clock()
 
-    test_bullet = Bullet(screen, 400, 400, 2, 4, pygame.Color("Green"), math.radians(60))
-    test_list.append(test_bullet)
+    #bullet = Bullet(screen, 1000, 1000, 2, 4, pygame.Color("Green"), math.radians(60))
+    #bullet_list.append(bullet)
 
     while True:
         clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                bullet_spawn()
+                print(bullet_list)
         key_press = pygame.key.get_pressed()
         if key_press[pygame.K_UP]:
-            test_bullet.y -= 10
+            bullet.y -= 10
         if key_press[pygame.K_DOWN]:
-            test_bullet.y += 10
+            bullet.y += 10
         screen.fill(pygame.Color("Black"))
-        test_bullet.draw()
-        test_bullet.move()
+        for bullet in bullet_list:
+            bullet.draw()
+            bullet.move()
+            if bullet.x < 0:
+                bullet_list.remove(bullet)
+                print(bullet_list)
+            if bullet.x > screen.get_width():
+                bullet_list.remove(bullet)
+                print(bullet_list)
+            if bullet.y < 0:
+                bullet_list.remove(bullet)
+                print(bullet_list)
+            if bullet.y > screen.get_height():
+                bullet_list.remove(bullet)
+                print(bullet_list)
         pygame.display.update()
 
 if __name__ == "__main__":
