@@ -51,7 +51,7 @@ def main():
     screen = pygame.display.set_mode((700, 700))
     clock = pygame.time.Clock()
 
-    test_bullet = Bullet(screen, 400, 400, 2, 4, pygame.Color("Red"), math.radians(60))
+    test_bullet = Bullet(screen, 400, 400, 2, 4, pygame.Color("Green"), math.radians(60))
     test_list.append(test_bullet)
 
     while True:

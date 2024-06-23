@@ -13,7 +13,8 @@ class Player:
 
     def move(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_UP] or keys[pygame.K_w]:
+
+        if (keys[pygame.K_UP] or keys[pygame.K_w]):
             self.y -= self.speed
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.y += self.speed
