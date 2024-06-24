@@ -90,6 +90,8 @@ def main():
                     player.weapon.bullets = []
                     enemies.kills = 0
                     pygame.mixer.music.play()
+                    player_module.Player.x = 400
+                    player_module.Player.y = 400
 
 
             # TODO: Add you events code
