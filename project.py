@@ -99,6 +99,8 @@ def main():
         ##END GAME SCREEN
         if enemies.hit_player:
             screen.fill((0, 0, 0))
+            enemies.bullets = []
+            enemies.enemies = []
             game_over_text = score_font.render("GAME OVER", True, (255, 0, 0))
             screen.blit(game_over_text, (screen.get_width()/2 - (game_over_text.get_width()/2), screen.get_height()/2 - game_over_text.get_height()/2 -100))
             screen.blit(score_label, (screen.get_width()/2 - (score_label.get_width()/2), screen.get_height()/2 + (game_over_text.get_height()+10)-100))
@@ -163,6 +165,7 @@ def main():
             enemies.move_enemies()
             enemies.check_for_dead()
             enemies.check_hit_player()
+            enemies.checkBulletOffScreenAndMove()
             player.process()
 
 

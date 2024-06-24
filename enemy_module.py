@@ -68,7 +68,7 @@ class Shooter(Enemy):
         self.x += self.speed * math.cos(angle)
         self.y += self.speed * math.sin(angle)
 
-        if time.time() - self.lastShot >= 1:
+        if time.time() - self.lastShot >= 2:
             self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Black"), angle)
             self.lastShot = time.time()
 
