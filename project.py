@@ -116,6 +116,9 @@ def main():
         player.process()
 
         ## SCORE COUNTER
+        score_font = pygame.font.Font('font/scorefont.ttf', 70)
+        score_label = score_font.render(f"SCORE: {enemies.kills}", True, (255, 0, 0))
+        screen.blit(score_label, (5, 0))
         
 
         # TODO: Add your project code
