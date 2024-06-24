@@ -51,13 +51,13 @@ class Bullet:
             return True
         if self.x < 0:
             return True
-        if self.x < self.screen.get_width():
+        if self.x > self.screen.get_width():
             return True
         else:
             return False
 
     def play_bullet_sound(self):
-        bullet_sound = pygame.mixer.Sound("jasbro_laser.wav")
+        bullet_sound = pygame.mixer.Sound("sfx/jasbro_laser.wav")
         # sound created by jobro on fressound
         bullet_sound.play(0)
 
