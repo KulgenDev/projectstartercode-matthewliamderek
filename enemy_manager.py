@@ -10,6 +10,14 @@ class enemy_manager:
     def add_enemy(self):
         self.enemies.append(enemy_module.Enemy(self.screen, self.player))
         return
+    def check_for_dead(self):
+        for enemy in self.enemies:
+
+            for bullet in self.player.weapon.bullets:
+                if bullet.x < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15 and bullet.x > enemy.x -15:
+                    self.enemies.remove(enemy)
+                    self.player.weapon.bullets.remove(bullet)
+
     def spawn_enemies(self):
         for enemy in self.enemies:
             enemy.draw()
