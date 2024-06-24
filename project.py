@@ -24,7 +24,7 @@ def main():
 
     #REMOVE THE PYGAME.FULLSCREEN AT THE END TO MAKE IT NOT FORCE FULLSCREEN, IT WILL INSTEAD BE A SQUARE 800 by 800 window.
     screen = pygame.display.set_mode((800,800))
-    player = player_module.Player(screen,400,400,6)
+    player = player_module.Player(screen,400,400,3)
     enemies = enemy_manager.enemy_manager(screen,player)
     enemies.add_enemy()
     # let's set the framerate
