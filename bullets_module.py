@@ -1,6 +1,5 @@
 import pygame
 import sys
-# import player_module
 import math
 
 screen = pygame.display.set_mode((700, 700))
@@ -21,10 +20,8 @@ class Bullet:
         pygame.draw.rect(self.screen, self.color, (self.x, self.y, self.width, self.height))
 
     def move(self):
-        # take an angle and create a move direction
-        self.x += 1 * math.cos(self.angle)
-        self.y += 1 * math.sin(self.angle)
-
+        self.x += 7 * math.cos(self.angle)
+        self.y += 7 * math.sin(self.angle)
         points = []
         center_x = self.x + (self.width / 2)
         center_y = self.y + (self.height / 2)
@@ -68,10 +65,6 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((700, 700))
     clock = pygame.time.Clock()
-    """
-    #bullet = Bullet(screen, 1000, 1000, 2, 4, pygame.Color("Green"), math.radians(60))
-    #bullet_list.append(bullet)
-    """
 
     while True:
         clock.tick(60)
