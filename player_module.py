@@ -41,10 +41,16 @@ class Player:
             self.x += self.speed
 
     def colliding(self, wallRect : pygame.Rect):
-        if abs(self.x - wallRect.left) > abs(self.x - wallRect.right):
-            self.x = wallRect.right
-        if abs(self.x - wallRect.left) < abs(self.x - wallRect.right):
-            self.x = wallRect.left
+        if self.x <= wallRect.left or self.x + 20 >= wallRect.right:
+            if abs(self.x - wallRect.left) > abs(self.x - wallRect.right):
+                self.x = wallRect.right
+            if abs(self.x - wallRect.left) < abs(self.x - wallRect.right):
+                self.x = wallRect.left - 20
+        if self.y <= wallRect.top or self.y + 20 >= wallRect.bottom:
+            if abs(self.y - wallRect.top) > abs(self.y - wallRect.bottom):
+                self.y = wallRect.bottom
+            if abs(self.y - wallRect.top) < abs(self.y - wallRect.bottom):
+                self.y = wallRect.top - 20
 
     def getHitBox(self):
         return self.hitbox
