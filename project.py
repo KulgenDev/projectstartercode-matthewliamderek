@@ -106,6 +106,7 @@ def main():
 
         enemies.spawn_enemies()
         enemies.move_enemies()
+        enemies.check_for_dead()
         player.process()
         # TODO: Add your project code
 
