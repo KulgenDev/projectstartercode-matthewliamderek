@@ -103,8 +103,17 @@ def main():
             screen.fill((0, 0, 0))
             enemies.bullets = []
             enemies.enemies = []
+            try:
+                high_score = high_score
+            except:
+                high_score = 0
+            if enemies.kills > high_score:
+                high_score = enemies.kills
             game_over_text = score_font.render("GAME OVER", True, (255, 0, 0))
-            screen.blit(game_over_text, (screen.get_width()/2 - (game_over_text.get_width()/2), screen.get_height()/2 - game_over_text.get_height()/2 -100))
+            high_score_text = score_font.render(f'HIGH SCORE: {high_score}', True, (255, 0, 0))
+            screen.blit(game_over_text, (screen.get_width() / 2 - (game_over_text.get_width() / 2), screen.get_height() / 2 - game_over_text.get_height() / 2 - 100))
+            screen.blit(high_score_text,
+                        (screen.get_width() / 2 - (high_score_text.get_width() / 2), screen.get_height() / 2 + 30))
             screen.blit(score_label, (screen.get_width()/2 - (score_label.get_width()/2), screen.get_height()/2 + (game_over_text.get_height()+10)-100))
 
 
