@@ -57,6 +57,7 @@ class Bullet:
 
     def play_bullet_sound(self):
         bullet_sound = pygame.mixer.Sound("sfx/jasbro_laser.wav")
+        bullet_sound.set_volume(.5)
         # sound created by jobro on fressound
         bullet_sound.play(0)
 

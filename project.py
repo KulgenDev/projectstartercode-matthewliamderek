@@ -14,6 +14,7 @@ def main():
     # turn on pygame
     pygame.init()
     pygame.mixer.music.load("sfx/19th Floor - Bobby Richards.mp3")
+    pygame.mixer.music.set_volume(10)
     # sound created by Bobby Richards on youtube music
     pygame.mixer.music.play()
 
