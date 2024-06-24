@@ -1,6 +1,7 @@
 import enemy_module
 import pygame
 import math
+import gc
 
 class enemy_manager:
     def __init__(self, screen, player):
@@ -23,6 +24,10 @@ class enemy_manager:
                     self.enemies.remove(enemy)
                     self.player.weapon.bullets.remove(bullet)
                     self.kills += 1
+                    gc.collect()
+
+                   # print(len(self.enemies))
+                   # print(len(self.player.weapon.bullets))
 
     def spawn_enemies(self):
         for enemy in self.enemies:

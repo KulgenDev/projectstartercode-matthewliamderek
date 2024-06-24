@@ -2,6 +2,7 @@ import pygame
 import sys
 import math
 import bullets_module
+import gc
 
 class Weapon:
     def __init__(self, screen):
@@ -21,6 +22,7 @@ class Weapon:
         for bullet in self.bullets:
             if bullet.off_screen():
                 self.bullets.remove(bullet)
+                gc.collect()
 
 def main():
     pygame.init()
