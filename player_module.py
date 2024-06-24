@@ -64,7 +64,7 @@ def main():
     pygame.display.set_caption("Testing the Player")
     screen = pygame.display.set_mode((640, 650))
     weapon = weapon_module.Weapon(screen)
-    player = Player(screen, 300, 300, 3w)
+    player = Player(screen, 300, 300, 3)
 #    bullets = []
 
     while True:
