@@ -56,24 +56,13 @@ class Bullet:
         else:
             return False
 
+    def play_bullet_sound(self):
+        bullet_sound = pygame.mixer.Sound("jasbro_laser.wav")
+        # sound created by jobro on fressound
+        bullet_sound.play(0)
+
 
 bullet_list = []
-
-
-def bullet_spawn():
-    # from player_module import angle
-    # ask matthew to make angle a global variable and then change math.radians(60) to angle
-    pos = pygame.mouse.get_pos()
-    if not (pos[0] - 350 == 0):
-        angle = math.atan((pos[1] - 350) / (pos[0] - 350))
-        if pos[0] - 350 < 0:
-            angle += math.pi
-    bullet = Bullet(screen, 350, 350, 1, 4, pygame.Color("Green"), angle)
-    bullet_list.append(bullet)
-    bullet_sound = pygame.mixer.Sound("jasbro_laser.wav")
-    # sound created by jobro on freesound
-    bullet_sound.play(0)
-
 
 def main():
     pygame.init()
@@ -89,9 +78,6 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                bullet_spawn()
-                print(bullet_list)
         screen.fill(pygame.Color("Black"))
         for bullet in bullet_list:
             bullet.draw()
