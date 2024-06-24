@@ -10,6 +10,7 @@ class enemy_manager:
         self.player = player
         self.kills = 0
         self.spawned = 0
+        self.hit_player = False
 
     def add_enemy(self):
         self.enemies.append(enemy_module.Enemy(self.screen, self.player))
@@ -32,6 +33,11 @@ class enemy_manager:
     def spawn_enemies(self):
         for enemy in self.enemies:
             enemy.draw()
+
+    def chek_hit_player(self):
+        for enemy in self.enemies:
+            if (self.player.x < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15 and self.player.x > enemy.x -15) or (self.player.y+20 < enemy.y + 15 and self.player.y+20 > enemy.y-15 and self.player.x <enemy.x+15 and self.player.x>enemy.x-15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y+20 > enemy.y-15 and self.player.y-20 < enemy.y+15):
+                hit_player = True
     def move_enemies(self):
 
         for enemy in self.enemies:
