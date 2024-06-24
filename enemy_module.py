@@ -50,7 +50,34 @@ class Enemy():
         return (self.x <= 120 and self.y <= 250) or (self.x >= 680  and self.y <= 250) or (self.x <= 250 and self.y <= 120) or (self.x >= 550 and self.y <= 250) or (self.x <= 250 and self.y >= 680) or (self.x <=120 and self.y >= 430) or (self.x >= 550 and self.y >= 550)
 
     def draw(self):
-        pygame.draw.circle(self.screen,(255,0,0), (self.x,self.y),15)
+        pygame.draw.circle(self.screen,pygame.Color("Purple"), (self.x,self.y),15)
+
+class Kamikaze(Enemy):
+    def __init__(self,screen,player,manager):
+        super().__init__(screen,player,manager)
+        self.scream = pygame.mixer.Sound("sfx/Attack.wav")
+        self.scream.set_volume(0.1)
+        self.speed = 5
+
+    def move(self):
+        pygame.mixer.Sound.play(self.scream)
+        angle = 90
+        location_of_player = (self.player.x, self.player.y)
+        if location_of_player[0] != self.x:
+            angle = math.atan((location_of_player[1] - self.y)/(location_of_player[0] - self.x))
+        if self.x > location_of_player[0]:
+            angle += math.pi
+        #print(math.cos(angle), math.sin(angle))
+        self.x += self.speed*math.cos(angle)
+        self.y += self.speed*math.sin(angle)
+
+    def stopSound(self):
+        pygame.mixer.Sound.stop(self.scream)
+
+    def draw(self):
+        pygame.draw.circle(self.screen, pygame.Color("Red"), (self.x, self.y), 15)
+
+
 
 class Shooter(Enemy):
     def __init__(self, screen, player, manager):

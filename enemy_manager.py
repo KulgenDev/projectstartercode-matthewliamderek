@@ -5,6 +5,8 @@ import gc
 import sys
 import enemy_bullets_module
 import random
+import inspect
+
 
 class enemy_manager:
     def __init__(self, screen, player):
@@ -15,17 +17,19 @@ class enemy_manager:
         self.spawned = 0
         self.hit_player = False
         self.bullets = []
-        self.Types = {"Enemy" : enemy_module.Enemy, "Shooter" : enemy_module.Shooter, "Elite" : enemy_module.Elite}
+        self.Types = {"Enemy" : enemy_module.Enemy, "Shooter" : enemy_module.Shooter, "Elite" : enemy_module.Elite, "Kamikaze" : enemy_module.Kamikaze}
 
     def add_enemy(self):
         chance = random.randint(1, 100)
         type = self.Types["Enemy"]
         match chance:
-            case chance if 1 < chance < 50:
+            case chance if 1 < chance < 40:
                 type = self.Types["Enemy"]
-            case chance if 51 < chance < 80:
+            case chance if 41 < chance < 64:
+                type = self.Types["Kamikaze"]
+            case chance if 65 < chance < 85:
                 type = self.Types["Shooter"]
-            case chance if 81 < chance < 100:
+            case chance if 86 < chance < 100:
                 type = self.Types["Elite"]
 
         self.enemies.append(type(self.screen, self.player, self))
@@ -47,6 +51,8 @@ class enemy_manager:
 
             for bullet in self.player.weapon.bullets:
                 if (bullet.x < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15 and bullet.x > enemy.x -15) or (bullet.y+4 < enemy.y + 15 and bullet.y+4 > enemy.y-15 and bullet.x <enemy.x+15 and bullet.x>enemy.x-15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y+4 > enemy.y-15 and bullet.y-4 < enemy.y+15):
+                    if isinstance(enemy, enemy_module.Kamikaze):
+                        enemy.stopSound()
                     self.enemies.remove(enemy)
                     self.player.weapon.bullets.remove(bullet)
                     self.kills += 1
