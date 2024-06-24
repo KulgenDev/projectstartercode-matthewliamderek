@@ -11,11 +11,9 @@ class Player:
         self.speed = speed
         self.screen = screen
         self.weapon = weapon_module.Weapon(self.screen)
-        self.hitbox = pygame.Rect(self.x, self.y, 20, 20)
-        self.noLeft = False
-        self.noRight = False
-        self.noUp = False
-        self.noDown = False
+        self.hitbox= pygame.Rect(self.x, self.y, 20, 20)
+        self.OriginalX = x
+        self.OriginalY = y
 
     def process(self):
         # all functions that run every frame are held here in one place
@@ -44,22 +42,24 @@ class Player:
     def move(self):
         keys = pygame.key.get_pressed()
 
-        if (keys[pygame.K_UP] or keys[pygame.K_w]) and not self.noUp:
+        if (keys[pygame.K_UP] or keys[pygame.K_w]):
             self.y -= self.speed
-        if keys[pygame.K_DOWN] or keys[pygame.K_s] and not self.noDown:
+        if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.y += self.speed
-        if keys[pygame.K_LEFT] or keys[pygame.K_a] and not self.noLeft:
+        if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.x -= self.speed
-        if keys[pygame.K_RIGHT] or keys[pygame.K_d] and not self.noRight:
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.x += self.speed
 
     def colliding(self, wallRect : pygame.Rect):
-        if self.x <= wallRect.left or self.x + 20 >= wallRect.right:
+        X = self.x <= wallRect.left or self.x + 20 >= wallRect.right
+        Y = self.y <= wallRect.top or self.y + 20 >= wallRect.bottom
+        if X:
             if abs(self.x - wallRect.left) > abs(self.x - wallRect.right):
                 self.x = wallRect.right
             if abs(self.x - wallRect.left) < abs(self.x - wallRect.right):
                 self.x = wallRect.left - 20
-        if self.y <= wallRect.top or self.y + 20 >= wallRect.bottom:
+        if Y:
             if abs(self.y - wallRect.top) > abs(self.y - wallRect.bottom):
                 self.y = wallRect.bottom
             if abs(self.y - wallRect.top) < abs(self.y - wallRect.bottom):
