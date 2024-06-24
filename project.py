@@ -95,10 +95,10 @@ def main():
             # TODO: Add you events code
 
 
+
         ##END GAME SCREEN
         if enemies.hit_player:
             screen.fill((0, 0, 0))
-            enemies.bullets = []
             game_over_text = score_font.render("GAME OVER", True, (255, 0, 0))
             screen.blit(game_over_text, (screen.get_width()/2 - (game_over_text.get_width()/2), screen.get_height()/2 - game_over_text.get_height()/2 -100))
             screen.blit(score_label, (screen.get_width()/2 - (score_label.get_width()/2), screen.get_height()/2 + (game_over_text.get_height()+10)-100))
@@ -127,8 +127,6 @@ def main():
             ## BLACK LINES AROUND RECKTANGLES
 
             #left side
-
-            enemies.checkBulletOffScreenAndMove()
 
             for wall in walls:
                 wall.process()
