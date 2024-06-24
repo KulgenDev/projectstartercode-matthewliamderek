@@ -16,11 +16,12 @@ class Player:
     def process(self):
         # all functions that run every frame are held here in one place
         # in the main function, only call the process function and this will do the rest
-        self.move()
-        self.draw()
         for bullet in self.weapon.bullets:
             bullet.move()
             bullet.draw()
+        self.move()
+        self.draw()
+
         #Derek needs to change line 59 of bullets_module from "if self.x < self.screen.get_width():" to "if self.x > self.screen.get_width():"
         self.removeBullets()
         self.hitbox = pygame.Rect(self.x, self.y, 20, 20)

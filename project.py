@@ -48,7 +48,7 @@ def main():
                 if pos[0] - player.x < 0:
                     angle += math.pi
                     #bullets.append(testBullet(screen, player.x, player.y, angle))
-                player.weapon.fire(player.x, player.y, angle)
+                player.weapon.fire(player.x+10, player.y+10, angle)
 
             # TODO: Add you events code
 
