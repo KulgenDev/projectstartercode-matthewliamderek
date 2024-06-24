@@ -71,14 +71,7 @@ def main():
                     sys.exit()
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
-                press_key = pygame.key.get_pressed()
-                if press_key[pygame.K_k]:
-                    pygame.mixer.music.play()
-                    print("PRESSED")
-                if press_key[pygame.K_l]:
-                    pygame.mixer.music.stop()
-                    print("PRESSED")
+
 
             if (event.type == pygame.MOUSEBUTTONDOWN or (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE)) and not enemies.hit_player:
                 pos = pygame.mouse.get_pos()
