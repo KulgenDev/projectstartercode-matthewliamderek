@@ -14,17 +14,18 @@ class enemy_manager:
         for enemy in self.enemies:
             enemy.draw()
     def move_enemies(self):
-        # if len(self.enemies) == 1:
-        #     self.enemies[0].move()
-        # else:
-        #     for enemy in self.enemies:
-        #         for enemy2 in self.enemies:
-        #             if enemy2.x == enemy.x and enemy2.y == enemy.y:
-        #                 continue
-        #             distance = math.sqrt((enemy.x - enemy2.x)**2 + (enemy.y - enemy2.y)**2)
-        #             if distance > 35:
-        for enemy in self.enemies:
-            enemy.move()
+        if len(self.enemies) == 1:
+            self.enemies[0].move()
+        else:
+            for enemy in self.enemies:
+                for enemy2 in self.enemies:
+                    if enemy is not enemy2:
+                        distance = math.sqrt((enemy.x - enemy2.x)**2 + (enemy.y - enemy2.y)**2)
+                        if distance > 35:
+                            # print(enemy, enemy2)
+                            enemy.move()
+        # for enemy in self.enemies:
+        #     enemy.move()
 
     # add a method to check to see if an enemy has been hit, or anything else that would kill a enemy, then remove it from the enemies list . do this once a method has been made in the enemies module to check to see if the enemy should be removed.
 
