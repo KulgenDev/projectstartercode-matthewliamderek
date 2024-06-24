@@ -57,6 +57,9 @@ class Shooter(Enemy):
         super().__init__(screen, player, manager)
         self.lastShot = time.time()
 
+    def draw(self):
+        pygame.draw.circle(self.screen,(0,0,255), (self.x,self.y),15)
+
     def move(self):
         angle = 90
         location_of_player = (self.player.x, self.player.y)
@@ -68,7 +71,7 @@ class Shooter(Enemy):
         self.x += self.speed * math.cos(angle)
         self.y += self.speed * math.sin(angle)
 
-        if time.time() - self.lastShot >= 2:
+        if time.time() - self.lastShot >= 1:
             self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Black"), angle)
             self.lastShot = time.time()
 
