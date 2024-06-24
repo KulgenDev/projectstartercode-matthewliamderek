@@ -12,6 +12,10 @@ class Player:
         self.screen = screen
         self.weapon = weapon_module.Weapon(self.screen)
         self.hitbox = pygame.Rect(self.x, self.y, 20, 20)
+        self.noLeft = False
+        self.noRight = False
+        self.noUp = False
+        self.noDown = False
 
     def process(self):
         # all functions that run every frame are held here in one place
@@ -40,13 +44,13 @@ class Player:
     def move(self):
         keys = pygame.key.get_pressed()
 
-        if (keys[pygame.K_UP] or keys[pygame.K_w]):
+        if (keys[pygame.K_UP] or keys[pygame.K_w]) and not self.noUp:
             self.y -= self.speed
-        if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+        if keys[pygame.K_DOWN] or keys[pygame.K_s] and not self.noDown:
             self.y += self.speed
-        if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+        if keys[pygame.K_LEFT] or keys[pygame.K_a] and not self.noLeft:
             self.x -= self.speed
-        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d] and not self.noRight:
             self.x += self.speed
 
     def colliding(self, wallRect : pygame.Rect):
