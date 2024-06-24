@@ -113,6 +113,9 @@ def main():
         enemies.check_for_dead()
         player.process()
 
+        ## SCORE COUNTER
+        
+
         # TODO: Add your project code
 
         # don't forget the update, otherwise nothing will show up!
