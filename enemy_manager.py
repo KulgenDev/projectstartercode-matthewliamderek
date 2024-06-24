@@ -18,13 +18,14 @@ class enemy_manager:
         self.Types = {"Enemy" : enemy_module.Enemy, "Shooter" : enemy_module.Shooter, "Elite" : enemy_module.Elite}
 
     def add_enemy(self):
-        type = random.randint(0, len(self.Types) - 1)
-        match type:
-            case 0:
+        chance = random.randint(1, 100)
+        type = self.Types["Enemy"]
+        match chance:
+            case chance if 1 < chance < 50:
                 type = self.Types["Enemy"]
-            case 1:
+            case chance if 51 < chance < 80:
                 type = self.Types["Shooter"]
-            case 2:
+            case chance if 81 < chance < 100:
                 type = self.Types["Elite"]
 
         self.enemies.append(type(self.screen, self.player, self))
