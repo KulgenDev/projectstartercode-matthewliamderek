@@ -71,7 +71,16 @@ def main():
                     sys.exit()
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN and not enemies.hit_player:
+            if event.type == pygame.KEYDOWN:
+                press_key = pygame.key.get_pressed()
+                if press_key[pygame.K_k]:
+                    pygame.mixer.music.play()
+                    print("PRESSED")
+                if press_key[pygame.K_l]:
+                    pygame.mixer.music.stop()
+                    print("PRESSED")
+
+            if (event.type == pygame.MOUSEBUTTONDOWN or (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE)) and not enemies.hit_player:
                 pos = pygame.mouse.get_pos()
                 if not (pos[0] - player.x == 0):
                     angle = math.atan((pos[1] - player.y) / (pos[0] - player.x))
@@ -84,6 +93,8 @@ def main():
                 if (pos[0] < screen.get_width()/2 - (restartGreen.get_width()/2)+ restartGreen.get_width()) and (pos[0] > screen.get_width()/2 - (restartGreen.get_width()/2)) and pos[1] > screen.get_height()/2 + 100 and pos[1] < screen.get_height()/2 + 100+restartGreen.get_height():
                     enemies.hit_player = False
                     enemies.enemies = []
+                    pygame.mixer.music.load("sfx/19th Floor - Bobby Richards.mp3")
+                    player.weapon.bullets = []
                     enemies.kills = 0
                     pygame.mixer.music.play()
 
@@ -93,12 +104,12 @@ def main():
 
 
         ##END GAME SCREEN
-        if enemies.check_hit_player():
+        if enemies.hit_player:
             screen.fill((0, 0, 0))
             game_over_text = score_font.render("GAME OVER", True, (255, 0, 0))
             screen.blit(game_over_text, (screen.get_width()/2 - (game_over_text.get_width()/2), screen.get_height()/2 - game_over_text.get_height()/2 -100))
             screen.blit(score_label, (screen.get_width()/2 - (score_label.get_width()/2), screen.get_height()/2 + (game_over_text.get_height()+10)-100))
-            pygame.mixer.music.stop()
+
 
 
 
