@@ -14,16 +14,20 @@ class enemy_manager:
         for enemy in self.enemies:
             enemy.draw()
     def move_enemies(self):
-        if len(self.enemies) == 1:
-            self.enemies[0].move()
-        else:
-            for enemy in self.enemies:
-                for enemy2 in self.enemies:
-                    if enemy is not enemy2:
-                        distance = math.sqrt((enemy.x - enemy2.x)**2 + (enemy.y - enemy2.y)**2)
-                        if distance > 35:
-                            # print(enemy, enemy2)
-                            enemy.move()
+
+        for enemy in self.enemies:
+            first_pos = (enemy.x, enemy.y)
+            enemy.move()
+            #move every enemy that is spawned in
+
+            for enemy2 in self.enemies:
+                #for every enemy, go through every other enemy and grab its distnace, if the distance is too small, undo the move.
+                if enemy2 is not enemy:
+                    distance = math.sqrt((enemy.x - enemy2.x)**2 + (enemy.y - enemy2.y)**2)
+                    if distance < 35:
+                        enemy.x, enemy.y = first_pos
+                        break
+
         # for enemy in self.enemies:
         #     enemy.move()
 
