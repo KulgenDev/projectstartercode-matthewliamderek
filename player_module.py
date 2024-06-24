@@ -5,15 +5,16 @@ import math
 
 
 class Player:
-    def __init__(self, screen, x, y, speed, weapon):
+    def __init__(self, screen, x, y, speed):
         self.x = x
         self.y = y
         self.speed = speed
         self.screen = screen
-        self.weapon = weapon
+        self.weapon = weapon_module.Weapon(self.screen)
 
     def process(self):
         # all functions that run every frame are held here in one place
+        # in the main function, only call the process function and this will do the rest
         self.move()
         self.draw()
         #Derek needs to change line 59 of bullets_module from "if self.x < self.screen.get_width():" to "if self.x > self.screen.get_width():"
@@ -63,7 +64,7 @@ def main():
     pygame.display.set_caption("Testing the Player")
     screen = pygame.display.set_mode((640, 650))
     weapon = weapon_module.Weapon(screen)
-    player = Player(screen, 300, 300, 3, weapon)
+    player = Player(screen, 300, 300, 3w)
 #    bullets = []
 
     while True:
