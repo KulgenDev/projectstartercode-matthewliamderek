@@ -3,6 +3,8 @@ import pygame
 import math
 import gc
 import sys
+import enemy_bullets_module
+import random
 
 class enemy_manager:
     def __init__(self, screen, player):
@@ -12,12 +14,31 @@ class enemy_manager:
         self.kills = 0
         self.spawned = 0
         self.hit_player = False
+        self.bullets = []
+        self.Types = {"Enemy" : enemy_module.Enemy, "Shooter" : enemy_module.Shooter}
 
     def add_enemy(self):
-        self.enemies.append(enemy_module.Enemy(self.screen, self.player))
+        type = random.randint(0, len(self.Types) - 1)
+        match type:
+            case 0:
+                type = self.Types["Enemy"]
+            case 1:
+                type = self.Types["Shooter"]
+
+        self.enemies.append(type(self.screen, self.player, self))
         self.spawned += 1
 
         return
+    def shoot(self, screen, x, y, width, height, color, angle):
+        self.bullets.append(enemy_bullets_module.EnemyBullet(screen, x, y, width, height, color, angle))
+
+    def checkBulletOffScreenAndMove(self):
+        for bullet in self.bullets:
+            bullet.move()
+            bullet.draw()
+            if bullet.off_screen():
+                self.bullets.remove(bullet)
+
     def check_for_dead(self):
         for enemy in self.enemies:
 
@@ -37,6 +58,9 @@ class enemy_manager:
 
 
     def check_hit_player(self):
+        for bullet in self.bullets:
+            if bullet.hitPlayer(self.player):
+                self.hit_player = True
         for enemy in self.enemies:
             if (self.player.x < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15 and self.player.x > enemy.x -15) or (self.player.y+20 < enemy.y + 15 and self.player.y+20 > enemy.y-15 and self.player.x <enemy.x+15 and self.player.x>enemy.x-15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y+20 > enemy.y-15 and self.player.y-20 < enemy.y+15):
                 self.hit_player = True

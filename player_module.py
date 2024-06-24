@@ -11,7 +11,7 @@ class Player:
         self.speed = speed
         self.screen = screen
         self.weapon = weapon_module.Weapon(self.screen)
-        self.hitbox= pygame.Rect(self.x, self.y, 20, 20)
+        self.hitbox = pygame.Rect(self.x, self.y, 20, 20)
         self.OriginalX = x
         self.OriginalY = y
 
