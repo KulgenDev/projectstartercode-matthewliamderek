@@ -23,6 +23,14 @@ def main():
     # TODO: Change the size of the screen as you see fit!
 
 
+    ## Green text variable used for flashing restart screen opun death.
+
+    green = True
+    score_font = pygame.font.Font('font/scorefont.ttf', 70)
+    restartGreen = score_font.render("PLAY AGAIN", True, (75,204,31))
+    restartYellow = score_font.render("PLAY AGAIN", True, (238,234,37))
+
+
     #REMOVE THE PYGAME.FULLSCREEN AT THE END TO MAKE IT NOT FORCE FULLSCREEN, IT WILL INSTEAD BE A SQUARE 800 by 800 window.
     screen = pygame.display.set_mode((800,800))
     player = player_module.Player(screen,400,400,3)
@@ -71,6 +79,14 @@ def main():
                         angle += math.pi
                         #bullets.append(testBullet(screen, player.x, player.y, angle))
                     player.weapon.fire(player.x+10, player.y+10, angle)
+            elif event.type == pygame.MOUSEBUTTONDOWN and enemies.hit_player:
+                pos = pygame.mouse.get_pos()
+                if (pos[0] < screen.get_width()/2 - (restartGreen.get_width()/2)+ restartGreen.get_width()) and (pos[0] > screen.get_width()/2 - (restartGreen.get_width()/2)) and pos[1] > screen.get_height()/2 + 100 and pos[1] < screen.get_height()/2 + 100+restartGreen.get_height():
+                    enemies.hit_player = False
+                    enemies.enemies = []
+                    enemies.kills = 0
+                    pygame.mixer.music.play()
+
 
             # TODO: Add you events code
 
@@ -80,9 +96,21 @@ def main():
         if enemies.check_hit_player():
             screen.fill((0, 0, 0))
             game_over_text = score_font.render("GAME OVER", True, (255, 0, 0))
-            screen.blit(game_over_text, (screen.get_width()/2 - (game_over_text.get_width()/2), screen.get_height()/2 - game_over_text.get_height()/2))
-            screen.blit(score_label, (screen.get_width()/2 - (score_label.get_width()/2), screen.get_height()/2 + (game_over_text.get_height()+10)))
+            screen.blit(game_over_text, (screen.get_width()/2 - (game_over_text.get_width()/2), screen.get_height()/2 - game_over_text.get_height()/2 -100))
+            screen.blit(score_label, (screen.get_width()/2 - (score_label.get_width()/2), screen.get_height()/2 + (game_over_text.get_height()+10)-100))
             pygame.mixer.music.stop()
+
+
+
+
+            if final_clock - init_clock > .3:
+                init_clock = final_clock
+                green = not green
+            if green:
+                screen.blit(restartGreen, (screen.get_width()/2 - (restartGreen.get_width()/2), screen.get_height()/2 + 100))
+            elif not green:
+                screen.blit(restartYellow, (screen.get_width()/2 - (restartGreen.get_width()/2), screen.get_height()/2 + 100))
+
         ## GAME SCREEN
         if not enemies.hit_player:
             # TODO: Fill the screen with whatever background color you like!
@@ -135,7 +163,7 @@ def main():
 
 
             ## SCORE COUNTER
-            score_font = pygame.font.Font('font/scorefont.ttf', 70)
+
             score_label = score_font.render(f"SCORE: {enemies.kills}", True, (255, 0, 0))
             screen.blit(score_label, (5, 0))
 
