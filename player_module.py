@@ -14,6 +14,7 @@ class Player:
         self.hitbox = pygame.Rect(self.x, self.y, 20, 20)
         self.OriginalX = x
         self.OriginalY = y
+        self.playing = False
 
     def process(self):
         # all functions that run every frame are held here in one place

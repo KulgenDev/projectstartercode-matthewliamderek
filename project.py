@@ -31,6 +31,16 @@ def main():
     restartYellow = score_font.render("PLAY AGAIN", True, (238,234,37))
 
 
+    ##START SCREEN INITIALIZATION STUFF
+    startBG = pygame.image.load("images/startBG.png")
+    title_font = pygame.font.Font('font/scorefont.ttf', 150)
+    start_font = pygame.font.Font('font/scorefont.ttf', 90)
+    startTitle = title_font.render("Gopher Shooter", True, (255, 0, 0))
+    startGreen = start_font.render("START", True, (75,204,31))
+
+
+
+
     #REMOVE THE PYGAME.FULLSCREEN AT THE END TO MAKE IT NOT FORCE FULLSCREEN, IT WILL INSTEAD BE A SQUARE 800 by 800 window.
     screen = pygame.display.set_mode((800,800))
     player = player_module.Player(screen,400,400,3)
@@ -73,7 +83,7 @@ def main():
                 sys.exit()
 
 
-            if (event.type == pygame.MOUSEBUTTONDOWN or (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE)) and not enemies.hit_player:
+            if (event.type == pygame.MOUSEBUTTONDOWN or (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE)) and not enemies.hit_player and player.playing:
                 pos = pygame.mouse.get_pos()
                 if not (pos[0] - player.x == 0):
                     angle = math.atan((pos[1] - player.y) / (pos[0] - player.x))
@@ -92,14 +102,27 @@ def main():
                     pygame.mixer.music.play()
                     player.x = player.OriginalX
                     player.y = player.OriginalY
+            elif event.type == pygame.MOUSEBUTTONDOWN and not player.playing:
+                pos = pygame.mouse.get_pos()
+                if (pos[0] < screen.get_width()/2 - (startGreen.get_width()/2)+ startGreen.get_width()) and (pos[0] > screen.get_width()/2 - (startGreen.get_width()/2)) and pos[1] > screen.get_height()/2 + 100 and pos[1] < screen.get_height()/2 + 100+startGreen.get_height():
+                    player.playing = True
+
 
 
             # TODO: Add you events code
 
+        ## START GAME SCREEN
+        if not player.playing:
+            screen.blit(startBG, (0, 0))
+            screen.blit(startTitle, (screen.get_width()/2-(startTitle.get_width()/2),screen.get_height()/2-200))
+            screen.blit(startGreen, (screen.get_width()/2-(startGreen.get_width()/2),screen.get_height()/2+100))
+
+
+
 
 
         ##END GAME SCREEN
-        if enemies.hit_player:
+        if enemies.hit_player and player.playing:
             screen.fill((0, 0, 0))
             enemies.bullets = []
             enemies.enemies = []
@@ -129,7 +152,7 @@ def main():
                 screen.blit(restartYellow, (screen.get_width()/2 - (restartGreen.get_width()/2), screen.get_height()/2 + 100))
 
         ## GAME SCREEN
-        if not enemies.hit_player:
+        if not enemies.hit_player and player.playing:
             # TODO: Fill the screen with whatever background color you like!
             screen.fill((110, 79, 33))
 
