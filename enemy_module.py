@@ -128,7 +128,7 @@ class Elite(Shooter):
             self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Cyan"), angle - math.pi/6)
             bullet_sound = pygame.mixer.Sound("sfx/laser_shot_big.wav")
             bullet_sound.set_volume(.5)
-            # sound created by jobro on fressound
+            # sound created by bulbaproducer on fressound
             bullet_sound.play(0)
             self.lastShot = time.time()
 

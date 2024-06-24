@@ -76,6 +76,9 @@ class enemy_manager:
         for enemy in self.enemies:
             if (self.player.x < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15 and self.player.x > enemy.x -15) or (self.player.y+20 < enemy.y + 15 and self.player.y+20 > enemy.y-15 and self.player.x <enemy.x+15 and self.player.x>enemy.x-15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y+20 > enemy.y-15 and self.player.y-20 < enemy.y+15):
                 self.hit_player = True
+                if isinstance(enemy, enemy_module.Kamikaze):
+                    explosion_sound = pygame.mixer.Sound("sfx/explosion.wav")
+                    explosion_sound.play(0)
                 pygame.mixer.music.unload()
                 pygame.mixer.music.load("sfx/total_distortion_you_are_dead.mp3")
                 pygame.mixer.music.play()
