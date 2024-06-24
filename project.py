@@ -6,6 +6,7 @@ import player_module
 import enemy_module
 import enemy_manager
 import time
+import math
 
 
 def main():
@@ -35,6 +36,14 @@ def main():
                     sys.exit()
             if event.type == pygame.QUIT:
                 sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pos = pygame.mouse.get_pos()
+                if not (pos[0] - player.x == 0):
+                    angle = math.atan((pos[1] - player.y) / (pos[0] - player.x))
+                if pos[0] - player.x < 0:
+                    angle += math.pi
+                    #bullets.append(testBullet(screen, player.x, player.y, angle))
+                player.weapon.fire(player.x, player.y, angle)
 
             # TODO: Add you events code
 
@@ -92,8 +101,7 @@ def main():
 
         enemies.spawn_enemies()
         enemies.move_enemies()
-        player.draw()
-        player.move()
+        player.process()
         # TODO: Add your project code
 
         # don't forget the update, otherwise nothing will show up!

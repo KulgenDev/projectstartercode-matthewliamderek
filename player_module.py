@@ -86,10 +86,6 @@ def main():
 
         screen.fill((0, 0, 0))
 
-        for b in weapon.bullets:
-            b.move()
-            b.draw()
-
 
 
 
