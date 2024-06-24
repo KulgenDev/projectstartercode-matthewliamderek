@@ -5,7 +5,7 @@ import player_module
 import sys
 import time
 import enemy_manager
-
+import bullets_module
 
 
 class Enemy():
@@ -72,7 +72,11 @@ class Shooter(Enemy):
         self.y += self.speed * math.sin(angle)
 
         if time.time() - self.lastShot >= 1:
-            self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Black"), angle)
+            self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Cyan"), angle)
+            bullet_sound = pygame.mixer.Sound("sfx/jasbro_laser.wav")
+            bullet_sound.set_volume(.5)
+            # sound created by jobro on fressound
+            bullet_sound.play(0)
             self.lastShot = time.time()
 
 class Elite(Shooter):
@@ -92,9 +96,13 @@ class Elite(Shooter):
         self.y += self.speed * math.sin(angle)
 
         if time.time() - self.lastShot >= 1.5:
-            self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Black"), angle)
-            self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Black"), angle + math.pi/6)
-            self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Black"), angle - math.pi/6)
+            self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Cyan"), angle)
+            self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Cyan"), angle + math.pi/6)
+            self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Cyan"), angle - math.pi/6)
+            bullet_sound = pygame.mixer.Sound("sfx/laser_shot_big.wav")
+            bullet_sound.set_volume(.5)
+            # sound created by jobro on fressound
+            bullet_sound.play(0)
             self.lastShot = time.time()
 
     def draw(self):
