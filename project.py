@@ -32,6 +32,21 @@ def main():
     init_clock = time.time()
     walls = []
 
+    walls.append(wall_module.Wall(screen, (0, 0, 0), (0, 0, 120, 250), 10))
+    walls.append(wall_module.Wall(screen, (0, 0, 0), pygame.Rect(0, 550, 120, 250), 10))
+
+    # top side
+    walls.append(wall_module.Wall(screen, (0, 0, 0), pygame.Rect(0, 0, 250, 120), 10))
+    walls.append(wall_module.Wall(screen, (0, 0, 0), pygame.Rect(500, 0, 250, 120), 10))
+
+    # right side
+    walls.append(wall_module.Wall(screen, (0, 0, 0), pygame.Rect(screen.get_width() - 120, 0, 120, 250), 10))
+    walls.append(wall_module.Wall(screen, (0, 0, 0), pygame.Rect(screen.get_width() - 120, 550, 120, 250), 10))
+
+    # bottom side
+    walls.append(wall_module.Wall(screen, (0, 0, 0), pygame.Rect(0, screen.get_height() - 120, 250, 120), 10))
+    walls.append(wall_module.Wall(screen, (0, 0, 0), pygame.Rect(500, screen.get_height() - 120, 250, 120), 10))
+
     spawn_time = 3
     while True:
         final_clock = time.time()
@@ -63,25 +78,12 @@ def main():
         ## BLACK LINES AROUND RECKTANGLES
 
         #left side
-        walls.append(wall_module.Wall(screen, (0,0,0), (0, 0, 120, 250),10))
-        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(0, 550, 120, 250),10))
-
-        #top side
-        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(0, 0, 250, 120),10))
-        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(500, 0, 250, 120),10))
-
-        #right side
-        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(screen.get_width()-120, 0, 120, 250),10))
-        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(screen.get_width()-120, 550, 120, 250),10))
-
-        #bottom side
-        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(0, screen.get_height()-120, 250, 120),10))
-        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(500, screen.get_height()-120, 250, 120),10))
 
         for wall in walls:
             wall.process()
             if wall.isCollided(player):
                 player.colliding(pygame.Rect(wall.rect))
+
 
         ##BROWN EDGE RECTANGLES
         #left side

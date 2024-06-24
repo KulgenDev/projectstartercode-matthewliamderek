@@ -21,12 +21,21 @@ class Player:
             bullet.draw()
         self.move()
         self.draw()
-
+        self.outOffBounds()
         #Derek needs to change line 59 of bullets_module from "if self.x < self.screen.get_width():" to "if self.x > self.screen.get_width():"
         self.removeBullets()
         self.hitbox = pygame.Rect(self.x, self.y, 20, 20)
 
 
+    def outOffBounds(self):
+        if self.x < 0:
+            self.x = 0
+        if self.y < 0:
+            self.y = 0
+        if self.x + 20 > self.screen.get_width():
+            self.x = self.screen.get_width() - 20
+        if self.y + 20 > self.screen.get_height():
+            self.y = self.screen.get_height() - 20
 
     def move(self):
         keys = pygame.key.get_pressed()
