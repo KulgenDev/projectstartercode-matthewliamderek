@@ -124,6 +124,7 @@ def main():
         ##END GAME SCREEN
         if enemies.hit_player and player.playing:
             screen.fill((0, 0, 0))
+            spawn_time = 1
             enemies.bullets = []
             enemies.enemies = []
             try:
