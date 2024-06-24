@@ -56,7 +56,7 @@ class Kamikaze(Enemy):
     def __init__(self,screen,player,manager):
         super().__init__(screen,player,manager)
         self.scream = pygame.mixer.Sound("sfx/Attack.wav")
-        self.scream.set_volume(0.1)
+        self.scream.set_volume(0.2)
         self.speed = 5
 
     def move(self):
