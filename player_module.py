@@ -11,6 +11,7 @@ class Player:
         self.speed = speed
         self.screen = screen
         self.weapon = weapon_module.Weapon(self.screen)
+        self.hitbox = pygame.Rect(self.x, self.y, 20, 20)
 
     def process(self):
         # all functions that run every frame are held here in one place
@@ -22,6 +23,8 @@ class Player:
             bullet.draw()
         #Derek needs to change line 59 of bullets_module from "if self.x < self.screen.get_width():" to "if self.x > self.screen.get_width():"
         self.removeBullets()
+        self.hitbox = pygame.Rect(self.x, self.y, 20, 20)
+
 
 
     def move(self):
@@ -36,6 +39,11 @@ class Player:
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.x += self.speed
 
+    def colliding(self, wallRect : pygame.Rect):
+        self.x = wallRect.right
+
+    def getHitBox(self):
+        return self.hitbox
 
     def get_pos(self):
         return (self.x, self.y)

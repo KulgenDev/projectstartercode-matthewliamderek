@@ -2,6 +2,8 @@ import pygame
 import sys
 import weapon_module
 import math
+import player_module
+import enemy_module
 
 
 class Wall:
@@ -17,6 +19,9 @@ class Wall:
     def draw(self):
         pygame.draw.rect(self.screen, self.color, self.rect, self.width)
 
-    def isCollided(self):
-        pass
+    def isCollided(self, object):
+        if pygame.Rect.colliderect(pygame.Rect(self.rect), object.hitbox):
+            return True
+        return False
+
 

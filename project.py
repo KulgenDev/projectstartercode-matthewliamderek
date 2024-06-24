@@ -76,6 +76,8 @@ def main():
 
         for wall in walls:
             wall.process()
+            if wall.isCollided(player):
+                player.colliding(wall.rect)
 
         ##BROWN EDGE RECTANGLES
         #left side
