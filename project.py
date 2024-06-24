@@ -45,7 +45,7 @@ def main():
     screen = pygame.display.set_mode((800,800))
     player = player_module.Player(screen,400,400,3)
     enemies = enemy_manager.enemy_manager(screen,player)
-    enemies.add_enemy()
+    # enemies.add_enemy()
     # let's set the framerate
     clock = pygame.time.Clock()
     init_clock = time.time()
