@@ -13,6 +13,9 @@ import wall_module
 def main():
     # turn on pygame
     pygame.init()
+    pygame.mixer.music.load("sfx/19th Floor - Bobby Richards.mp3")
+    # sound created by Bobby Richards on youtube music
+    pygame.mixer.music.play()
 
     # create a screen
     pygame.display.set_caption("Gopher Shooter")
@@ -108,10 +111,10 @@ def main():
         enemies.move_enemies()
         enemies.check_for_dead()
         player.process()
+
         # TODO: Add your project code
 
         # don't forget the update, otherwise nothing will show up!
         pygame.display.update()
-
 
 main()
