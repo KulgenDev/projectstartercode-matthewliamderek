@@ -63,7 +63,7 @@ def main():
                     sys.exit()
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN and not enemies.hit_player:
                 pos = pygame.mouse.get_pos()
                 if not (pos[0] - player.x == 0):
                     angle = math.atan((pos[1] - player.y) / (pos[0] - player.x))
@@ -82,6 +82,7 @@ def main():
             game_over_text = score_font.render("GAME OVER", True, (255, 0, 0))
             screen.blit(game_over_text, (screen.get_width()/2 - (game_over_text.get_width()/2), screen.get_height()/2 - game_over_text.get_height()/2))
             screen.blit(score_label, (screen.get_width()/2 - (score_label.get_width()/2), screen.get_height()/2 + (game_over_text.get_height()+10)))
+            pygame.mixer.music.stop()
         ## GAME SCREEN
         if not enemies.hit_player:
             # TODO: Fill the screen with whatever background color you like!
