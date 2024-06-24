@@ -2,6 +2,7 @@ import enemy_module
 import pygame
 import math
 import gc
+import sys
 
 class enemy_manager:
     def __init__(self, screen, player):
@@ -34,10 +35,14 @@ class enemy_manager:
         for enemy in self.enemies:
             enemy.draw()
 
-    def chek_hit_player(self):
+    def check_hit_player(self):
         for enemy in self.enemies:
             if (self.player.x < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15 and self.player.x > enemy.x -15) or (self.player.y+20 < enemy.y + 15 and self.player.y+20 > enemy.y-15 and self.player.x <enemy.x+15 and self.player.x>enemy.x-15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y+20 > enemy.y-15 and self.player.y-20 < enemy.y+15):
                 hit_player = True
+
+                sys.exit()  ## COMMENT THIS LINE OUT IF YOU DONT WANT TO DIE
+
+                #print(hit_player)
     def move_enemies(self):
 
         for enemy in self.enemies:

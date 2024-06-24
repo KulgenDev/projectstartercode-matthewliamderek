@@ -115,7 +115,9 @@ def main():
         enemies.spawn_enemies()
         enemies.move_enemies()
         enemies.check_for_dead()
+        enemies.check_hit_player()
         player.process()
+
 
         ## SCORE COUNTER
         score_font = pygame.font.Font('font/scorefont.ttf', 70)
