@@ -2,6 +2,8 @@ import pygame
 import sys
 import math
 
+#https://www.youtube.com/watch?v=_VWQWIWQuOg&list=PLpUXyegQw-SFWpeg9q6XgarxtQVdnaoMM&index=4
+
 screen = pygame.display.set_mode((700, 700))
 
 
