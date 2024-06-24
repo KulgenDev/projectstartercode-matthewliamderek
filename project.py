@@ -7,6 +7,7 @@ import enemy_module
 import enemy_manager
 import time
 import math
+import wall_module
 
 
 def main():
@@ -25,6 +26,7 @@ def main():
     # let's set the framerate
     clock = pygame.time.Clock()
     init_clock = time.time()
+    walls = []
 
     spawn_time = 3
     while True:
@@ -57,22 +59,23 @@ def main():
         ## BLACK LINES AROUND RECKTANGLES
 
         #left side
-        pygame.draw.rect(screen, (0,0,0), pygame.Rect(0, 0, 120, 250),10)
-        pygame.draw.rect(screen, (0,0,0), pygame.Rect(0, 550, 120, 250),10)
+        walls.append(wall_module.Wall(screen, (0,0,0), (0, 0, 120, 250),10))
+        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(0, 550, 120, 250),10))
 
         #top side
-        pygame.draw.rect(screen, (0,0,0), pygame.Rect(0, 0, 250, 120),10)
-        pygame.draw.rect(screen, (0,0,0), pygame.Rect(500, 0, 250, 120),10)
+        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(0, 0, 250, 120),10))
+        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(500, 0, 250, 120),10))
 
         #right side
-        pygame.draw.rect(screen, (0,0,0), pygame.Rect(screen.get_width()-120, 0, 120, 250),10)
-        pygame.draw.rect(screen, (0,0,0), pygame.Rect(screen.get_width()-120, 550, 120, 250),10)
+        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(screen.get_width()-120, 0, 120, 250),10))
+        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(screen.get_width()-120, 550, 120, 250),10))
 
         #bottom side
-        pygame.draw.rect(screen, (0,0,0), pygame.Rect(0, screen.get_height()-120, 250, 120),10)
-        pygame.draw.rect(screen, (0,0,0), pygame.Rect(500, screen.get_height()-120, 250, 120),10)
+        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(0, screen.get_height()-120, 250, 120),10))
+        walls.append(wall_module.Wall(screen, (0,0,0), pygame.Rect(500, screen.get_height()-120, 250, 120),10))
 
-
+        for wall in walls:
+            wall.process()
 
         ##BROWN EDGE RECTANGLES
         #left side
