@@ -11,7 +11,7 @@ class Weapon:
         self.type = self.types["Bullet"]
 
     def fire(self, x, y, angle):
-        self.bullets.append(self.type(self.screen, x, y, 2, 4, pygame.Color("Green"), angle))
+        self.bullets.append(self.type(self.screen, x, y, 4, 4, pygame.Color("Green"), angle))
         self.bullets[len(self.bullets) - 1].play_bullet_sound()
 
     def changeWeapon(self, type):
