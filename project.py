@@ -47,7 +47,7 @@ def main():
     walls.append(wall_module.Wall(screen, (0, 0, 0), pygame.Rect(0, screen.get_height() - 120, 250, 120), 10))
     walls.append(wall_module.Wall(screen, (0, 0, 0), pygame.Rect(500, screen.get_height() - 120, 250, 120), 10))
 
-    spawn_time = 3
+    spawn_time = 1
     while True:
         final_clock = time.time()
         clock.tick(60)
