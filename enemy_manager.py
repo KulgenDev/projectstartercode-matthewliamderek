@@ -6,6 +6,7 @@ import sys
 import enemy_bullets_module
 import random
 import inspect
+global titan_health
 
 
 
@@ -19,20 +20,23 @@ class enemy_manager:
         self.hit_player = False
         self.bullets = []
         self.pickups = []
-        self.Types = {"Enemy" : enemy_module.Enemy, "Shooter" : enemy_module.Shooter, "Elite" : enemy_module.Elite, "Kamikaze" : enemy_module.Kamikaze}
+        self.Types = {"Enemy" : enemy_module.Enemy, "Shooter" : enemy_module.Shooter, "Elite" : enemy_module.Elite, "Kamikaze" : enemy_module.Kamikaze, "Titan" : enemy_module.Titan}
 
     def add_enemy(self):
-        chance = random.randint(1, 100)
-        type = self.Types["Enemy"]
-        match chance:
-            case chance if 1 < chance < 40:
-                type = self.Types["Enemy"]
-            case chance if 41 < chance < 64:
-                type = self.Types["Kamikaze"]
-            case chance if 65 < chance < 85:
-                type = self.Types["Shooter"]
-            case chance if 86 < chance < 100:
-                type = self.Types["Elite"]
+        if self.kills % 50 == 0:
+            type = self.Types["Titan"]
+        else:
+            chance = random.randint(1, 100)
+            type = self.Types["Enemy"]
+            match chance:
+                case chance if 1 < chance < 40:
+                    type = self.Types["Enemy"]
+                case chance if 41 < chance < 64:
+                    type = self.Types["Kamikaze"]
+                case chance if 65 < chance < 85:
+                    type = self.Types["Shooter"]
+                case chance if 86 < chance < 100:
+                    type = self.Types["Elite"]
 
         self.enemies.append(type(self.screen, self.player, self))
         self.spawned += 1
@@ -58,20 +62,29 @@ class enemy_manager:
                         explosion_sound = pygame.mixer.Sound("sfx/explosion.wav")
                         explosion_sound.set_volume(1)
                         explosion_sound.play()
-                    chance = random.randint(1, 100)
-                    if (isinstance(enemy, enemy_module.Shooter) or isinstance(enemy, enemy_module.Kamikaze)) and not type(enemy) == enemy_module.Elite:
-                        if chance >= 80:
-                            self.player.weapon.addPickup(enemy.x, enemy.y, "Fast Bullet")
-                    elif isinstance(enemy, enemy_module.Elite):
-                        if chance >= 85:
-                            self.player.weapon.addPickup(enemy.x, enemy.y, "Shotgun")
-                    try:
-                        self.enemies.remove(enemy)
-                    except:
-                        pass
-                    self.player.weapon.bullets.remove(bullet)
-                    self.kills += 1
-                    gc.collect()
+                    if isinstance(enemy, enemy_module.Titan):
+                        enemy.titan_health += 1
+                        if enemy.titan_health == 15:
+                            try:
+                                enemy.titan_health = 0
+                                self.enemies.remove(enemy)
+                            except:
+                                pass
+                    else:
+                        chance = random.randint(1, 100)
+                        if (isinstance(enemy, enemy_module.Shooter) or isinstance(enemy, enemy_module.Kamikaze)) and not type(enemy) == enemy_module.Elite:
+                            if chance >= 80:
+                                self.player.weapon.addPickup(enemy.x, enemy.y, "Fast Bullet")
+                        elif isinstance(enemy, enemy_module.Elite):
+                            if chance >= 85:
+                                self.player.weapon.addPickup(enemy.x, enemy.y, "Shotgun")
+                        try:
+                            self.enemies.remove(enemy)
+                        except:
+                            pass
+                        self.player.weapon.bullets.remove(bullet)
+                        self.kills += 1
+                        gc.collect()
 
                    # print(len(self.enemies))
                    # print(len(self.player.weapon.bullets))

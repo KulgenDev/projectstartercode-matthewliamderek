@@ -135,6 +135,26 @@ class Elite(Shooter):
     def draw(self):
         pygame.draw.circle(self.screen,(255,255,0), (self.x,self.y),15)
 
+class Titan(Enemy):
+
+    def __init__(self, screen, player, manager):
+        super().__init__(screen, player, manager)
+        self.titan_health = 0
+
+    def move(self):
+        angle = 90
+        location_of_player = (self.player.x, self.player.y)
+        if location_of_player[0] != self.x:
+            angle = math.atan((location_of_player[1] - self.y)/(location_of_player[0] - self.x))
+        if self.x > location_of_player[0]:
+            angle += math.pi
+        self.x += self.speed*math.cos(angle)
+        self.y += self.speed*math.sin(angle)
+
+    def draw(self):
+        pygame.draw.circle(self.screen,pygame.Color(37, 145, 37), (self.x,self.y),15)
+
+
 def main():
     pygame.init()
     pygame.display.set_caption("TESTING ENEMY")
