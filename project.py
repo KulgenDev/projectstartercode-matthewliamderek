@@ -104,7 +104,7 @@ def main():
                     player.y = player.OriginalY
             elif event.type == pygame.MOUSEBUTTONDOWN and not player.playing:
                 pos = pygame.mouse.get_pos()
-                if (pos[0] < screen.get_width()/2 - (startGreen.get_width()/2)+ startGreen.get_width()) and (pos[0] > screen.get_width()/2 - (startGreen.get_width()/2)) and pos[1] > screen.get_height()/2 + 100 and pos[1] < screen.get_height()/2 + 100+startGreen.get_height():
+                if (pos[0] < screen.get_width()/2 - (startGreen.get_width()/2)+ startGreen.get_width()) and (pos[0] > screen.get_width()/2 - (startGreen.get_width()/2)) and pos[1] > screen.get_height()/2 + 50 and pos[1] < screen.get_height()/2 + 50 + startGreen.get_height():
                     player.playing = True
 
 
@@ -113,9 +113,38 @@ def main():
 
         ## START GAME SCREEN
         if not player.playing:
+            mouse_pos = pygame.mouse.get_pos()
             screen.blit(startBG, (0, 0))
             screen.blit(startTitle, (screen.get_width()/2-(startTitle.get_width()/2),screen.get_height()/2-200))
             screen.blit(startGreen, (screen.get_width()/2-(startGreen.get_width()/2),screen.get_height()/2+50))
+
+
+            info_font = pygame.font.Font('font/scorefont.ttf', 50)
+            info_label = info_font.render('Info:', True, (255, 255, 255))
+            screen.blit(info_label, (20, screen.get_height()-340))
+            pygame.draw.circle(screen, pygame.Color("Purple"),(45,screen.get_height()-45),20)
+
+            pygame.draw.circle(screen, pygame.Color("Red"),(45,screen.get_height()-120),20)
+
+            pygame.draw.circle(screen, pygame.Color("Yellow"),(45,screen.get_height()-195),20)
+
+            pygame.draw.circle(screen, pygame.Color("Blue"),(45,screen.get_height()-270),20)
+
+            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-45+20 and mouse_pos[1] >= screen.get_height()-45-20:
+                #DISPLAY INFO FOR PURPLE
+                #pygame.draw.rect(screen, (136,136,136), Rect())
+                print("hovering over purple")
+            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-120+20 and mouse_pos[1] >= screen.get_height()-120-20:
+                #DISPLAY INFO FOR Red
+                print("hovering over red")
+            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-195+20 and mouse_pos[1] >= screen.get_height()-195-20:
+                #DISPLAY INFO FOR Yellow
+                print("hovering over yellow")
+            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-270+20 and mouse_pos[1] >= screen.get_height()-270-20:
+                #DISPLAY INFO FOR Blue
+                print("hovering over blue")
+
+
 
 
 
