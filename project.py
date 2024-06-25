@@ -11,9 +11,9 @@ import wall_module
 
 
 def main():
+    pygame.event.set_grab(True)
     # turn on pygame
     pygame.init()
-    pygame.event.set_grab(True)
     pygame.mixer.music.load("sfx/Serious Sam 2 (soundtrack) - Sirius-Be Quick Or Be Dead.mp3")
     pygame.mixer.music.set_volume(10)
     pygame.mixer.music.play()
@@ -70,13 +70,44 @@ def main():
 
     info_font = pygame.font.Font('font/scorefont.ttf', 50)
     info_label = info_font.render('Info:', True, (255, 255, 255))
-    stats_font = pygame.font.SysFont('trebuchetms', 30)
+    stats_font = pygame.font.SysFont('trebuchetms', 20)
 
             #purple:
-    purple_title = info_font.render("Basic", True, (0,0,0))
+    purple_title = info_font.render("Basic", True, pygame.Color("Purple"))
 
-    purple_stats = stats_font.render("The most basic enemy, will die when shot", True, (0, 0, 0))
-    purple_stats2 = stats_font.render("No special powers", True, (0, 0, 0))
+    purple_stats = stats_font.render("•The most basic enemy", True, (0, 0, 0))
+    purple_stats2 = stats_font.render("•Will die when shot", True, (0, 0, 0))
+    purple_stats3 = stats_font.render("•No gun", True, (0, 0, 0))
+    purple_stats4 = stats_font.render("•No special powers", True, (0, 0, 0))
+
+            #red:
+    red_title = info_font.render("Kamakazi", True, pygame.Color("Red"))
+
+    red_stats = stats_font.render("•Runs really FAST", True, (0, 0, 0))
+    red_stats2 = stats_font.render("•Will die when shot", True, (0, 0, 0))
+    red_stats3 = stats_font.render("•No gun", True, (0, 0, 0))
+    red_stats4 = stats_font.render("•Ex singer", True, (0, 0, 0))
+    red_stats5 = stats_font.render("•Might drop faster ammo", True, (0, 0, 0))
+
+            #yellow:
+    yellow_title = info_font.render("Shotgun", True, pygame.Color("Yellow"))
+
+    yellow_stats = stats_font.render("•Normal speed", True, (0, 0, 0))
+    yellow_stats2 = stats_font.render("•Will die when shot", True, (0, 0, 0))
+    yellow_stats3 = stats_font.render("•Has a shotgun", True, (0, 0, 0))
+    yellow_stats4 = stats_font.render("•Shoots 3 at a time", True, (0, 0, 0))
+    yellow_stats5 = stats_font.render("•Might drop its gun", True, (0, 0, 0))
+
+            #blue:
+    blue_title = info_font.render("Pistol", True, pygame.Color("Blue"))
+
+    blue_stats = stats_font.render("•Normal speed", True, (0, 0, 0))
+    blue_stats2 = stats_font.render("•Will die when shot", True, (0, 0, 0))
+    blue_stats3 = stats_font.render("•Has a pistol", True, (0, 0, 0))
+    blue_stats4 = stats_font.render("•Shoots 1 at a time", True, (0, 0, 0))
+    blue_stats5 = stats_font.render("•Might drop faster ammo", True, (0, 0, 0))
+
+
     #trebuchetms
 
 
@@ -149,20 +180,53 @@ def main():
 
             if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-45+20 and mouse_pos[1] >= screen.get_height()-45-20:
                 #DISPLAY INFO FOR PURPLE
-                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-170), (200, 150)))
-                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-170), (200, 150)), 4)
-                screen.blit(purple_title, (80+100 - purple_title.get_width()/2,screen.get_height()-165))
-                #screen.blit(purple_stats, (80 + 5 ))
-                print("hovering over purple")
+                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-170), (250, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-170), (250, 150)), 4)
+                screen.blit(purple_title, (80+125 - purple_title.get_width()/2,screen.get_height()-165))
+                screen.blit(purple_stats, (80 + 5, screen.get_height()-135))
+                screen.blit(purple_stats2, (80 + 5, screen.get_height()-115))
+                screen.blit(purple_stats3, (80 + 5, screen.get_height()-95))
+                screen.blit(purple_stats4, (80 + 5, screen.get_height()-75))
+
+
+                #print("hovering over purple")
             if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-120+20 and mouse_pos[1] >= screen.get_height()-120-20:
                 #DISPLAY INFO FOR Red
-                print("hovering over red")
+                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-200), (250, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-200), (250, 150)), 4)
+                screen.blit(red_title, (80+125 - red_title.get_width()/2,screen.get_height()-195))
+                screen.blit(red_stats, (80 + 5, screen.get_height()-165))
+                screen.blit(red_stats2, (80 + 5, screen.get_height()-145))
+                screen.blit(red_stats3, (80 + 5, screen.get_height()-125))
+                screen.blit(red_stats4, (80 + 5, screen.get_height()-105))
+                screen.blit(red_stats5, (80 + 5, screen.get_height()-85))
+
+
+                #print("hovering over red")
             if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-195+20 and mouse_pos[1] >= screen.get_height()-195-20:
+
                 #DISPLAY INFO FOR Yellow
-                print("hovering over yellow")
+                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-240), (250, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-240), (250, 150)), 4)
+                screen.blit(yellow_title, (80+125 - yellow_title.get_width()/2,screen.get_height()-235))
+                screen.blit(yellow_stats, (80 + 5, screen.get_height()-205))
+                screen.blit(yellow_stats2, (80 + 5, screen.get_height()-185))
+                screen.blit(yellow_stats3, (80 + 5, screen.get_height()-165))
+                screen.blit(yellow_stats4, (80 + 5, screen.get_height()-145))
+                screen.blit(yellow_stats5, (80 + 5, screen.get_height()-125))
+
+                #print("hovering over yellow")
             if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-270+20 and mouse_pos[1] >= screen.get_height()-270-20:
                 #DISPLAY INFO FOR Blue
-                print("hovering over blue")
+                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-320), (250, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-320), (250, 150)), 4)
+                screen.blit(blue_title, (80+125 - blue_title.get_width()/2,screen.get_height()-315))
+                screen.blit(blue_stats, (80 + 5, screen.get_height()-285))
+                screen.blit(blue_stats2, (80 + 5, screen.get_height()-265))
+                screen.blit(blue_stats3, (80 + 5, screen.get_height()-245))
+                screen.blit(blue_stats4, (80 + 5, screen.get_height()-225))
+                screen.blit(blue_stats5, (80 + 5, screen.get_height()-205))
+                #print("hovering over blue")
 
 
 
