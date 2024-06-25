@@ -43,12 +43,16 @@ class Pickup:
                 pygame.draw.rect(self.screen, pygame.Color("Pink"), (self.x, self.y, 20, 20))
 
     def isPickedUp(self, player):
-        if self.type == "Shotgun":
-            hitbox = pygame.Rect(self.x, self.y, self.width, self.height)
-            return pygame.Rect.colliderect(hitbox, pygame.Rect(player.x, player.y, 20, 20))
-        else:
-            hitbox_2 = pygame.Rect(self.x, self.y, self.width, self.height)
-            return pygame.Rect.colliderect(hitbox_2, pygame.Rect(player.x, player.y, 20, 20))
+        match self.type:
+            case "Shotgun":
+                hitbox = pygame.Rect(self.x, self.y, self.width, self.height)
+                return pygame.Rect.colliderect(hitbox, pygame.Rect(player.x, player.y, 20, 20))
+            case "Fast Bullet":
+                hitbox_2 = pygame.Rect(self.x, self.y, self.width, self.height)
+                return pygame.Rect.colliderect(hitbox_2, pygame.Rect(player.x, player.y, 20, 20))
+            case _:
+                other_hitbox = pygame.Rect(self.x, self.y, self.width, self.height)
+                return pygame.Rect.colliderect(other_hitbox, pygame.Rect(player.x, player.y, 20, 20))
 
     def changeWeapon(self, weapon):
         weapon.changeWeapon(self.type, self.ammo)
