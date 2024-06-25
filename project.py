@@ -66,6 +66,22 @@ def main():
     walls.append(wall_module.Wall(screen, (0, 0, 0), pygame.Rect(0, screen.get_height() - 120, 250, 120), 10))
     walls.append(wall_module.Wall(screen, (0, 0, 0), pygame.Rect(500, screen.get_height() - 120, 250, 120), 10))
 
+    ## INFO MENU VARIABLE DECLERATIONS BELOW:
+
+    info_font = pygame.font.Font('font/scorefont.ttf', 50)
+    info_label = info_font.render('Info:', True, (255, 255, 255))
+    stats_font = pygame.font.SysFont('trebuchetms', 30)
+
+            #purple:
+    purple_title = info_font.render("Basic", True, (0,0,0))
+
+    purple_stats = stats_font.render("The most basic enemy, will die when shot")
+    purple_stats2 = stats_font.render("No special powers")
+    #trebuchetms
+
+
+
+
 
     score_font = pygame.font.Font('font/scorefont.ttf', 70)
 
@@ -120,8 +136,7 @@ def main():
             screen.blit(startGreen, (screen.get_width()/2-(startGreen.get_width()/2),screen.get_height()/2+50))
 
 
-            info_font = pygame.font.Font('font/scorefont.ttf', 50)
-            info_label = info_font.render('Info:', True, (255, 255, 255))
+
             screen.blit(info_label, (20, screen.get_height()-340))
             pygame.draw.circle(screen, pygame.Color("Purple"),(45,screen.get_height()-45),20)
 
@@ -133,7 +148,10 @@ def main():
 
             if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-45+20 and mouse_pos[1] >= screen.get_height()-45-20:
                 #DISPLAY INFO FOR PURPLE
-                #pygame.draw.rect(screen, (136,136,136), Rect())
+                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-170), (200, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-170), (200, 150)), 4)
+                screen.blit(purple_title, (80+100 - purple_title.get_width()/2,screen.get_height()-165))
+                screen.blit()
                 print("hovering over purple")
             if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-120+20 and mouse_pos[1] >= screen.get_height()-120-20:
                 #DISPLAY INFO FOR Red
