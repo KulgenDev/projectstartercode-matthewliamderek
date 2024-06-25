@@ -58,11 +58,16 @@ class enemy_manager:
                         explosion_sound = pygame.mixer.Sound("sfx/explosion.wav")
                         explosion_sound.set_volume(1)
                         explosion_sound.play()
+                    chance = random.randint(1, 100)
+                    if isinstance(enemy, enemy_module.Shooter) or isinstance(enemy, enemy_module.Kamikaze):
+                        if chance >= 80:
+                            self.player.weapon.addPickup(enemy.x, enemy.y, "Fast Bullet")
+                    if isinstance(enemy, enemy_module.Elite):
+                        if chance >= 80:
+                            self.player.weapon.addPickup(enemy.x, enemy.y, "Shotgun")
                     self.enemies.remove(enemy)
                     self.player.weapon.bullets.remove(bullet)
                     self.kills += 1
-                    if isinstance(enemy, enemy_module.Enemy):
-                        self.player.weapon.addPickup(enemy.x, enemy.y)
                     gc.collect()
 
                    # print(len(self.enemies))

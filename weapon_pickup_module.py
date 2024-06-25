@@ -1,5 +1,6 @@
 import pygame
 import weapon_module
+import time
 
 class Pickup:
 
@@ -13,10 +14,14 @@ class Pickup:
         self.type = type
         self.ammo = ammo
         self.removed = False
+        self.time = 2
+        self.spawnTime = time.time()
 
     def process(self, player):
         if self.isPickedUp(player):
             self.changeWeapon(player.weapon)
+            self.removed = True
+        if time.time() >= self.spawnTime + self.time:
             self.removed = True
         self.draw()
 

@@ -36,8 +36,11 @@ class Weapon:
         self.type = self.types[type]
         self.ammo = ammo
 
-    def addPickup(self, x, y):
-        self.pickups.append(weapon_pickup_module.Pickup(self.screen, x, y, 15, 15, pygame.Color("Pink"), "Fast Bullet", 40))
+    def addPickup(self, x, y, type):
+        if type == "Fast Bullet":
+            self.pickups.append(weapon_pickup_module.Pickup(self.screen, x, y, 15, 15, pygame.Color("Pink"), type, 40))
+        elif type == "Shotgun":
+            self.pickups.append(weapon_pickup_module.Pickup(self.screen, x, y, 15, 15, pygame.Color("Orange"), type, 30))
 
     def removeOffScreen(self):
         for bullet in self.bullets:

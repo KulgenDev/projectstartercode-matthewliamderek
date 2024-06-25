@@ -101,7 +101,7 @@ def main():
     screen = pygame.display.set_mode((640, 650))
     weapon = weapon_module.Weapon(screen)
     player = Player(screen, 300, 300, 3)
-#    bullets = []
+#   bullets = []
 
     while True:
         clock.tick(60)
