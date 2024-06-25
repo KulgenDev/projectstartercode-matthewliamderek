@@ -140,6 +140,7 @@ class Titan(Enemy):
     def __init__(self, screen, player, manager):
         super().__init__(screen, player, manager)
         self.titan_health = 0
+        self.speed = 2
 
     def move(self):
         angle = 90

@@ -23,7 +23,7 @@ class enemy_manager:
         self.Types = {"Enemy" : enemy_module.Enemy, "Shooter" : enemy_module.Shooter, "Elite" : enemy_module.Elite, "Kamikaze" : enemy_module.Kamikaze, "Titan" : enemy_module.Titan}
 
     def add_enemy(self):
-        if self.kills % 50 == 0:
+        if self.kills % 50 == 0 and self.kills != 0:
             type = self.Types["Titan"]
         else:
             chance = random.randint(1, 100)
@@ -63,11 +63,14 @@ class enemy_manager:
                         explosion_sound.set_volume(1)
                         explosion_sound.play()
                     if isinstance(enemy, enemy_module.Titan):
+                        self.player.weapon.bullets.remove(bullet)
                         enemy.titan_health += 1
-                        if enemy.titan_health == 15:
+                        if enemy.titan_health == 10:
                             try:
                                 enemy.titan_health = 0
                                 self.enemies.remove(enemy)
+                                self.kills += 1
+                                gc.collect()
                             except:
                                 pass
                     else:

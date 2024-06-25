@@ -8,10 +8,6 @@ import enemy_manager
 import time
 import math
 import wall_module
-global titan_health
-titan_health = 0
-
-
 
 def main():
     pygame.event.set_grab(True)
