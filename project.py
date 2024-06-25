@@ -19,7 +19,7 @@ def main():
     pygame.mixer.music.play()
 
     # create a screen
-    pygame.display.set_caption("Gopher Shooter")
+    pygame.display.set_caption("Shape Shooter")
     # TODO: Change the size of the screen as you see fit!
 
 
@@ -35,7 +35,7 @@ def main():
     startBG = pygame.image.load("images/startBG.png")
     title_font = pygame.font.Font('font/scorefont.ttf', 150)
     start_font = pygame.font.Font('font/scorefont.ttf', 90)
-    startTitle = title_font.render("Gopher Shooter", True, (255, 0, 0))
+    startTitle = title_font.render("Shape Shooter", True, (255, 0, 0))
     startGreen = start_font.render("START", True, (75,204,31))
 
 
@@ -115,7 +115,7 @@ def main():
         if not player.playing:
             screen.blit(startBG, (0, 0))
             screen.blit(startTitle, (screen.get_width()/2-(startTitle.get_width()/2),screen.get_height()/2-200))
-            screen.blit(startGreen, (screen.get_width()/2-(startGreen.get_width()/2),screen.get_height()/2+100))
+            screen.blit(startGreen, (screen.get_width()/2-(startGreen.get_width()/2),screen.get_height()/2+50))
 
 
 
