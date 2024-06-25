@@ -13,6 +13,7 @@ import wall_module
 def main():
     # turn on pygame
     pygame.init()
+    pygame.event.set_grab(True)
     pygame.mixer.music.load("sfx/Serious Sam 2 (soundtrack) - Sirius-Be Quick Or Be Dead.mp3")
     pygame.mixer.music.set_volume(10)
     pygame.mixer.music.play()
