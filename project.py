@@ -236,7 +236,7 @@ def main():
 
         ##END GAME SCREEN
         if enemies.hit_player and player.playing:
-            topscorefile = open("topscore.txt","r")
+            topscorefile = open("topscore","r")
             #print(int(topscorefile.read()))
             screen.fill((0, 0, 0))
             spawn_time = 1
@@ -250,7 +250,7 @@ def main():
             except:
                 high_score = 0
             if enemies.kills > high_score:
-                topscorefile = open("topscore.txt","w")
+                topscorefile = open("topscore","w")
 
                 high_score = enemies.kills
                 topscorefile.write(str(high_score))
