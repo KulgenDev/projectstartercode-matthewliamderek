@@ -32,6 +32,12 @@ class Pickup:
             self.width = 82.5
             self.height = 20
             self.screen.blit(the_shotgun_image, (self.x, self.y))
+        elif self.type == "Fast Bullet":
+            the_rifle_image = pygame.image.load("images/sniper_rifle_image.bmp")
+            the_rifle_image = pygame.transform.scale(the_rifle_image, (80, 40))
+            self.width = 80
+            self.height = 40
+            self.screen.blit(the_rifle_image, (self.x, self.y))
         else:
             pygame.draw.rect(self.screen, pygame.Color("Pink"), (self.x, self.y, 20, 20))
 
