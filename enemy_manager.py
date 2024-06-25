@@ -92,7 +92,6 @@ class enemy_manager:
             if (self.player.x < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15 and self.player.x > enemy.x -15) or (self.player.y+20 < enemy.y + 15 and self.player.y+20 > enemy.y-15 and self.player.x <enemy.x+15 and self.player.x>enemy.x-15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y+20 > enemy.y-15 and self.player.y-20 < enemy.y+15):
                 self.hit_player = True
                 if isinstance(enemy, enemy_module.Kamikaze):
-                    print("test")
                     enemy.stopSound()
                     explosion_sound = pygame.mixer.Sound("sfx/explosion.wav")
                     explosion_sound.set_volume(1)
