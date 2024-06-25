@@ -59,11 +59,11 @@ class enemy_manager:
                         explosion_sound.set_volume(1)
                         explosion_sound.play()
                     chance = random.randint(1, 100)
-                    if isinstance(enemy, enemy_module.Shooter) or isinstance(enemy, enemy_module.Kamikaze):
+                    if (isinstance(enemy, enemy_module.Shooter) or isinstance(enemy, enemy_module.Kamikaze)) and not type(enemy) == enemy_module.Elite:
                         if chance >= 80:
                             self.player.weapon.addPickup(enemy.x, enemy.y, "Fast Bullet")
-                    if isinstance(enemy, enemy_module.Elite):
-                        if chance >= 80:
+                    elif isinstance(enemy, enemy_module.Elite):
+                        if chance >= 0:
                             self.player.weapon.addPickup(enemy.x, enemy.y, "Shotgun")
                     try:
                         self.enemies.remove(enemy)

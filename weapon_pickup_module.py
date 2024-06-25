@@ -26,20 +26,21 @@ class Pickup:
         self.draw()
 
     def draw(self):
-        if self.type == "Shotgun":
-            the_shotgun_image = pygame.image.load("images/shotgun_image.bmp")
-            the_shotgun_image = pygame.transform.scale(the_shotgun_image, (82.5, 20))
-            self.width = 82.5
-            self.height = 20
-            self.screen.blit(the_shotgun_image, (self.x, self.y))
-        elif self.type == "Fast Bullet":
-            the_rifle_image = pygame.image.load("images/sniper_rifle_image.bmp")
-            the_rifle_image = pygame.transform.scale(the_rifle_image, (80, 40))
-            self.width = 80
-            self.height = 40
-            self.screen.blit(the_rifle_image, (self.x, self.y))
-        else:
-            pygame.draw.rect(self.screen, pygame.Color("Pink"), (self.x, self.y, 20, 20))
+        match self.type:
+            case "Shotgun":
+                the_shotgun_image = pygame.image.load("images/shotgun_image.bmp")
+                the_shotgun_image = pygame.transform.scale(the_shotgun_image, (82.5, 20))
+                self.width = 82.5
+                self.height = 20
+                self.screen.blit(the_shotgun_image, (self.x, self.y))
+            case "Fast Bullet":
+                the_rifle_image = pygame.image.load("images/sniper_rifle_image.bmp")
+                the_rifle_image = pygame.transform.scale(the_rifle_image, (80, 40))
+                self.width = 80
+                self.height = 40
+                self.screen.blit(the_rifle_image, (self.x, self.y))
+            case _:
+                pygame.draw.rect(self.screen, pygame.Color("Pink"), (self.x, self.y, 20, 20))
 
     def isPickedUp(self, player):
         if self.type == "Shotgun":
