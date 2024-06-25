@@ -26,11 +26,22 @@ class Pickup:
         self.draw()
 
     def draw(self):
-        pygame.draw.rect(self.screen, self.color, (self.x, self.y, self.width, self.height))
+        if self.type == "Shotgun":
+            the_shotgun_image = pygame.image.load("images/shotgun_image.bmp")
+            the_shotgun_image = pygame.transform.scale(the_shotgun_image, (82.5, 20))
+            self.width = 82.5
+            self.height = 20
+            self.screen.blit(the_shotgun_image, (self.x, self.y))
+        else:
+            pygame.draw.rect(self.screen, pygame.Color("Pink"), (self.x, self.y, 20, 20))
 
     def isPickedUp(self, player):
-        hitbox = pygame.Rect(self.x, self.y, self.width, self.height)
-        return pygame.Rect.colliderect(hitbox, pygame.Rect(player.x, player.y, 20, 20))
+        if self.type == "Shotgun":
+            hitbox = pygame.Rect(self.x, self.y, self.width, self.height)
+            return pygame.Rect.colliderect(hitbox, pygame.Rect(player.x, player.y, 20, 20))
+        else:
+            hitbox_2 = pygame.Rect(self.x, self.y, self.width, self.height)
+            return pygame.Rect.colliderect(hitbox_2, pygame.Rect(player.x, player.y, 20, 20))
 
     def changeWeapon(self, weapon):
         weapon.changeWeapon(self.type, self.ammo)
