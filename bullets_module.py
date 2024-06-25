@@ -17,13 +17,14 @@ class Bullet:
         self.height = height
         self.color = color
         self.angle = angle
+        self.speed = 7
 
     def draw(self):
         pygame.draw.rect(self.screen, self.color, (self.x, self.y, self.width, self.height))
 
     def move(self):
-        self.x += 7 * math.cos(self.angle)
-        self.y += 7 * math.sin(self.angle)
+        self.x += self.speed * math.cos(self.angle)
+        self.y += self.speed * math.sin(self.angle)
         points = []
         center_x = self.x + (self.width / 2)
         center_y = self.y + (self.height / 2)
@@ -60,6 +61,15 @@ class Bullet:
         bullet_sound.set_volume(.5)
         # sound created by jobro on fressound
         bullet_sound.play(0)
+
+class fastBullet(Bullet):
+    def __init__(self, screen, x, y, width, height, color, angle):
+        super().__init__(screen, x, y, width, height, color, angle)
+        self.speed = 14
+
+class Shotgun(Bullet):
+    def __init__(self, screen, x, y, width, height, color, angle):
+        super().__init__(screen, x, y, width, height, color, angle)
 
 
 bullet_list = []

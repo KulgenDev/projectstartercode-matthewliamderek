@@ -8,6 +8,7 @@ import random
 import inspect
 
 
+
 class enemy_manager:
     def __init__(self, screen, player):
         self.enemies = []
@@ -17,6 +18,7 @@ class enemy_manager:
         self.spawned = 0
         self.hit_player = False
         self.bullets = []
+        self.pickups = []
         self.Types = {"Enemy" : enemy_module.Enemy, "Shooter" : enemy_module.Shooter, "Elite" : enemy_module.Elite, "Kamikaze" : enemy_module.Kamikaze}
 
     def add_enemy(self):
@@ -59,6 +61,8 @@ class enemy_manager:
                     self.enemies.remove(enemy)
                     self.player.weapon.bullets.remove(bullet)
                     self.kills += 1
+                    if isinstance(enemy, enemy_module.Enemy):
+                        self.player.weapon.addPickup(enemy.x, enemy.y)
                     gc.collect()
 
                    # print(len(self.enemies))
