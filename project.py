@@ -101,6 +101,7 @@ def main():
                     enemies.kills = 0
                     pygame.mixer.music.play()
                     player.x = player.OriginalX
+                    player.weapon.pickups = []
                     player.y = player.OriginalY
             elif event.type == pygame.MOUSEBUTTONDOWN and not player.playing:
                 pos = pygame.mouse.get_pos()
