@@ -30,6 +30,9 @@ def main():
     restartGreen = score_font.render("PLAY AGAIN", True, (75,204,31))
     restartYellow = score_font.render("PLAY AGAIN", True, (238,234,37))
 
+    exitGreen = score_font.render("EXIT", True, (75, 204, 31))
+    exitYellow = score_font.render("EXIT", True, (238, 234, 37))
+
 
     ##START SCREEN INITIALIZATION STUFF
     startBG = pygame.image.load("images/startBG.png")
@@ -81,13 +84,13 @@ def main():
     purple_stats4 = stats_font.render("•No special powers", True, (0, 0, 0))
 
             #red:
-    red_title = info_font.render("Kamakazi", True, pygame.Color("Red"))
+    red_title = info_font.render("Kamikaze", True, pygame.Color("Red"))
 
     red_stats = stats_font.render("•Runs really FAST", True, (0, 0, 0))
     red_stats2 = stats_font.render("•Will die when shot", True, (0, 0, 0))
     red_stats3 = stats_font.render("•No gun", True, (0, 0, 0))
     red_stats4 = stats_font.render("•Ex singer", True, (0, 0, 0))
-    red_stats5 = stats_font.render("•Might drop faster ammo", True, (0, 0, 0))
+    red_stats5 = stats_font.render("•Might drop a spare rifle", True, (0, 0, 0))
 
             #yellow:
     yellow_title = info_font.render("Shotgun", True, pygame.Color("Yellow"))
@@ -105,7 +108,7 @@ def main():
     blue_stats2 = stats_font.render("•Will die when shot", True, (0, 0, 0))
     blue_stats3 = stats_font.render("•Has a pistol", True, (0, 0, 0))
     blue_stats4 = stats_font.render("•Shoots 1 at a time", True, (0, 0, 0))
-    blue_stats5 = stats_font.render("•Might drop faster ammo", True, (0, 0, 0))
+    blue_stats5 = stats_font.render("•Might drop a spare rifle", True, (0, 0, 0))
 
 
     #trebuchetms
@@ -151,6 +154,8 @@ def main():
                     player.x = player.OriginalX
                     player.weapon.pickups = []
                     player.y = player.OriginalY
+                if (pos[0] < screen.get_width()/2 - (exitGreen.get_width()/2) + exitGreen.get_width()) and (pos[0] > screen.get_width()/2 - (exitGreen.get_width()/2)) and pos[1] > screen.get_height()/2 + 175 and pos[1] < screen.get_height()/2 + 175 + exitGreen.get_height():
+                    sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN and not player.playing:
                 pos = pygame.mouse.get_pos()
                 if (pos[0] < screen.get_width()/2 - (startGreen.get_width()/2)+ startGreen.get_width()) and (pos[0] > screen.get_width()/2 - (startGreen.get_width()/2)) and pos[1] > screen.get_height()/2 + 50 and pos[1] < screen.get_height()/2 + 50 + startGreen.get_height():
@@ -273,8 +278,10 @@ def main():
                 green = not green
             if green:
                 screen.blit(restartGreen, (screen.get_width()/2 - (restartGreen.get_width()/2), screen.get_height()/2 + 100))
+                screen.blit(exitGreen, (screen.get_width() / 2 - (exitGreen.get_width()/2), screen.get_height()/2 + 175))
             elif not green:
                 screen.blit(restartYellow, (screen.get_width()/2 - (restartGreen.get_width()/2), screen.get_height()/2 + 100))
+                screen.blit(exitYellow, (screen.get_width()/2 - (exitYellow.get_width()/2), screen.get_height()/2 + 175))
 
         ## GAME SCREEN
         if not enemies.hit_player and player.playing:
