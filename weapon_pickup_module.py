@@ -14,7 +14,7 @@ class Pickup:
         self.type = type
         self.ammo = ammo
         self.removed = False
-        self.time = 2
+        self.time = 4
         self.spawnTime = time.time()
 
     def process(self, player):

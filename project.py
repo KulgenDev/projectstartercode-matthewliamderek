@@ -13,9 +13,8 @@ import wall_module
 def main():
     # turn on pygame
     pygame.init()
-    pygame.mixer.music.load("sfx/19th Floor - Bobby Richards.mp3")
+    pygame.mixer.music.load("sfx/Serious Sam 2 (soundtrack) - Sirius-Be Quick Or Be Dead.mp3")
     pygame.mixer.music.set_volume(10)
-    # sound created by Bobby Richards on youtube music
     pygame.mixer.music.play()
 
     # create a screen
@@ -112,7 +111,8 @@ def main():
                 if (pos[0] < screen.get_width()/2 - (restartGreen.get_width()/2)+ restartGreen.get_width()) and (pos[0] > screen.get_width()/2 - (restartGreen.get_width()/2)) and pos[1] > screen.get_height()/2 + 100 and pos[1] < screen.get_height()/2 + 100+restartGreen.get_height():
                     enemies.hit_player = False
                     enemies.enemies = []
-                    pygame.mixer.music.load("sfx/19th Floor - Bobby Richards.mp3")
+                    player.weapon.changeWeapon("Bullet", 0)
+                    pygame.mixer.music.load("sfx/Serious Sam 2 (soundtrack) - Sirius-Be Quick Or Be Dead.mp3")
                     player.weapon.bullets = []
                     enemies.kills = 0
                     pygame.mixer.music.play()
