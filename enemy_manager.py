@@ -65,7 +65,10 @@ class enemy_manager:
                     if isinstance(enemy, enemy_module.Elite):
                         if chance >= 80:
                             self.player.weapon.addPickup(enemy.x, enemy.y, "Shotgun")
-                    self.enemies.remove(enemy)
+                    try:
+                        self.enemies.remove(enemy)
+                    except:
+                        pass
                     self.player.weapon.bullets.remove(bullet)
                     self.kills += 1
                     gc.collect()
