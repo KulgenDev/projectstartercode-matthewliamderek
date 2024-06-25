@@ -236,16 +236,27 @@ def main():
 
         ##END GAME SCREEN
         if enemies.hit_player and player.playing:
+            topscorefile = open("topscore.txt","r")
+            #print(int(topscorefile.read()))
             screen.fill((0, 0, 0))
             spawn_time = 1
             enemies.bullets = []
             enemies.enemies = []
             try:
-                high_score = high_score
+
+                high_score = int(topscorefile.read())
+                topscorefile.close()
+
             except:
                 high_score = 0
             if enemies.kills > high_score:
+                topscorefile = open("topscore.txt","w")
+
                 high_score = enemies.kills
+                topscorefile.write(str(high_score))
+
+                topscorefile.close()
+
             game_over_text = title_font.render("GAME OVER", True, (255, 0, 0))
             high_score_text = score_font.render(f'HIGH SCORE: {high_score}', True, (255, 0, 0))
             screen.blit(game_over_text, (screen.get_width() / 2 - (game_over_text.get_width() / 2), screen.get_height() / 2 - game_over_text.get_height() / 2 - 100))
