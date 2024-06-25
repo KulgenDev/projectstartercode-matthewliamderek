@@ -122,7 +122,7 @@ class Elite(Shooter):
         self.x += self.speed * math.cos(angle)
         self.y += self.speed * math.sin(angle)
 
-        if time.time() - self.lastShot >= 1.5:
+        if time.time() - self.lastShot >= 0.9:
             self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Cyan"), angle)
             self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Cyan"), angle + math.pi/6)
             self.manager.shoot(self.screen, self.x, self.y, 4, 4, pygame.Color("Cyan"), angle - math.pi/6)
