@@ -15,6 +15,7 @@ class Player:
         self.OriginalX = x
         self.OriginalY = y
         self.playing = False
+        self.image = pygame.image.load("images/head.png")
 
     def process(self):
         # all functions that run every frame are held here in one place
@@ -75,8 +76,8 @@ class Player:
 
 
     def draw(self):
-        pygame.draw.rect(self.screen, pygame.Color("White"), (self.x, self.y, 20, 20))
-
+        #pygame.draw.rect(self.screen, pygame.Color("White"), (self.x, self.y, 20, 20))
+        self.screen.blit(self.image,(self.x,self.y))
     def removeBullets(self):
         self.weapon.removeOffScreen()
 
