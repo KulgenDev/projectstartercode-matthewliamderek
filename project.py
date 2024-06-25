@@ -75,8 +75,8 @@ def main():
             #purple:
     purple_title = info_font.render("Basic", True, (0,0,0))
 
-    purple_stats = stats_font.render("The most basic enemy, will die when shot")
-    purple_stats2 = stats_font.render("No special powers")
+    purple_stats = stats_font.render("The most basic enemy, will die when shot", True, (0, 0, 0))
+    purple_stats2 = stats_font.render("No special powers", True, (0, 0, 0))
     #trebuchetms
 
 
@@ -151,7 +151,7 @@ def main():
                 pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-170), (200, 150)))
                 pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-170), (200, 150)), 4)
                 screen.blit(purple_title, (80+100 - purple_title.get_width()/2,screen.get_height()-165))
-                screen.blit()
+                #screen.blit(purple_stats, (80 + 5 ))
                 print("hovering over purple")
             if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-120+20 and mouse_pos[1] >= screen.get_height()-120-20:
                 #DISPLAY INFO FOR Red
