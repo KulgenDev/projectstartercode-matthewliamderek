@@ -62,6 +62,11 @@ class Bullet:
         # sound created by jobro on fressound
         bullet_sound.play(0)
 
+    def play_shotgun_sound(self):
+        shotgun_sound = pygame.mixer.Sound("sfx/laser_shot_big.wav")
+        shotgun_sound.set_volume(.5)
+        shotgun_sound.play(0)
+
 class fastBullet(Bullet):
     def __init__(self, screen, x, y, width, height, color, angle):
         super().__init__(screen, x, y, width, height, color, angle)
