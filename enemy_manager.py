@@ -53,6 +53,9 @@ class enemy_manager:
                 if (bullet.x < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15 and bullet.x > enemy.x -15) or (bullet.y+4 < enemy.y + 15 and bullet.y+4 > enemy.y-15 and bullet.x <enemy.x+15 and bullet.x>enemy.x-15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y+4 > enemy.y-15 and bullet.y-4 < enemy.y+15):
                     if isinstance(enemy, enemy_module.Kamikaze):
                         enemy.stopSound()
+                        explosion_sound = pygame.mixer.Sound("sfx/explosion.wav")
+                        explosion_sound.set_volume(1)
+                        explosion_sound.play()
                     self.enemies.remove(enemy)
                     self.player.weapon.bullets.remove(bullet)
                     self.kills += 1
@@ -77,8 +80,11 @@ class enemy_manager:
             if (self.player.x < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15 and self.player.x > enemy.x -15) or (self.player.y+20 < enemy.y + 15 and self.player.y+20 > enemy.y-15 and self.player.x <enemy.x+15 and self.player.x>enemy.x-15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y > enemy.y-15 and self.player.y < enemy.y+15) or (self.player.x+20 > enemy.x-15 and self.player.x+20 < enemy.x+15 and self.player.y+20 > enemy.y-15 and self.player.y-20 < enemy.y+15):
                 self.hit_player = True
                 if isinstance(enemy, enemy_module.Kamikaze):
+                    print("test")
+                    enemy.stopSound()
                     explosion_sound = pygame.mixer.Sound("sfx/explosion.wav")
-                    explosion_sound.play(0)
+                    explosion_sound.set_volume(1)
+                    explosion_sound.play()
                 pygame.mixer.music.unload()
                 pygame.mixer.music.load("sfx/total_distortion_you_are_dead.mp3")
                 pygame.mixer.music.play()
