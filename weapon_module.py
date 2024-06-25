@@ -27,6 +27,12 @@ class Weapon:
         if self.ammo <= 0:
             self.changeWeapon("Bullet", 0)
 
+    def ammo_counter(self):
+        if self.ammo == 0:
+            return "Infinite"
+        else:
+            return self.ammo
+
     def process(self, player):
         for pickup in self.pickups:
             pickup.process(player)
