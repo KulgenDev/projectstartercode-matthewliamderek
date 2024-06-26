@@ -22,6 +22,8 @@ def main():
     # TODO: Change the size of the screen as you see fit!
 
 
+    supershots = 3
+
     ## Green text variable used for flashing restart screen opun death.
 
     green = True
@@ -135,6 +137,12 @@ def main():
             spawn_time -= .00015
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
+                pressed_keys = pygame.key.get_pressed()
+                if pressed_keys[pygame.K_f]:
+                    if supershots > 0:
+                        supershots -= 1
+                        for k in range(0, 360, 5):
+                            player.weapon.fire(player.x, player.y, k)
                 if event.key == pygame.K_ESCAPE:
                     sys.exit()
             if event.type == pygame.QUIT:
