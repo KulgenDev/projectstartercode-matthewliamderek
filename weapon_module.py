@@ -14,7 +14,14 @@ class Weapon:
         self.pickups = []
         self.ammo = 0
 
-    def fire(self, x, y, angle):
+    def fire(self, x, y, angle, super):
+
+
+        if super:
+            before_ammo = self.ammo
+            before_super_type = self.type
+            self.type = self.types["Bullet"]
+
         if self.type == self.types["Bullet"] or self.type == self.types["Fast Bullet"]:
             self.bullets.append(self.type(self.screen, x, y, 4, 4, pygame.Color("Green"), angle))
             self.bullets[len(self.bullets) - 1].play_bullet_sound()
@@ -29,6 +36,9 @@ class Weapon:
         self.ammo -= 1
         if self.ammo <= 0:
             self.changeWeapon("Bullet", 0)
+        if super:
+            self.ammo = before_ammo
+            self.type = before_super_type
 
     def grenadeFire(self, x, y, angle, color):
         self.bullets.append(bullets_module.Bullet(self.screen, x, y, 4, 4, color, angle))

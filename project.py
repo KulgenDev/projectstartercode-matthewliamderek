@@ -142,7 +142,7 @@ def main():
                     if supershots > 0:
                         supershots -= 1
                         for k in range(0, 360, 5):
-                            player.weapon.fire(player.x, player.y, k)
+                            player.weapon.fire(player.x, player.y, k, True)
                 if event.key == pygame.K_ESCAPE:
                     sys.exit()
             if event.type == pygame.QUIT:
@@ -156,7 +156,7 @@ def main():
                     if pos[0] - player.x < 0:
                         angle += math.pi
                         #bullets.append(testBullet(screen, player.x, player.y, angle))
-                    player.weapon.fire(player.x+10, player.y+10, angle)
+                    player.weapon.fire(player.x+10, player.y+10, angle, False)
             elif event.type == pygame.MOUSEBUTTONDOWN and enemies.hit_player:
                 pos = pygame.mouse.get_pos()
                 if (pos[0] < screen.get_width()/2 - (restartGreen.get_width()/2)+ restartGreen.get_width()) and (pos[0] > screen.get_width()/2 - (restartGreen.get_width()/2)) and pos[1] > screen.get_height()/2 + 100 and pos[1] < screen.get_height()/2 + 100+restartGreen.get_height():
@@ -166,6 +166,7 @@ def main():
                     pygame.mixer.music.load("sfx/Serious Sam 2 (soundtrack) - Sirius-Be Quick Or Be Dead.mp3")
                     player.weapon.bullets = []
                     enemies.kills = 0
+                    supershots = 3
                     pygame.mixer.music.play()
                     player.x = player.OriginalX
                     player.weapon.pickups = []
