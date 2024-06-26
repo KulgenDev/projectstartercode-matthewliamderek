@@ -132,7 +132,7 @@ def main():
         final_clock = time.time()
         clock.tick(60)
         if spawn_time - .00002 > 0:
-            spawn_time -= .00009
+            spawn_time -= .00015
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
