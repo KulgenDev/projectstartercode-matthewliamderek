@@ -384,8 +384,18 @@ def main():
 
             score_label = score_font.render(f"SCORE: {enemies.kills}", True, (255, 0, 0))
             screen.blit(score_label, (5, 0))
+
+            ## AMMO COUNTER
+
+
             ammo_label = score_font.render(f"AMMO: {player.weapon.ammo_counter()}", True, (255, 0, 0))
             screen.blit(ammo_label, (525, 0))
+
+            ## SUPERSHOT AMMO
+
+            super_label = score_font.render(f"SUPERS: {supershots}", True, (255, 0, 0))
+            screen.blit(super_label, (525, 50))
+
             #pygame.draw.rect(screen, (255,255,255), player.hitbox)
 
             # TODO: Add your project code
