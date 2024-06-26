@@ -1,0 +1,9 @@
+Shape Shooter is an arcade styled top-down shooter heavily inspired by games like Smash TV. The basic mechanics of the
+game is to eliminate enemies by shooting from various weapons while dodging enemy attacks. Each elimination results in
+one point added to your final score, but the enemies get faster and spawn more frequently the more points you acquire.
+
+Early into development, Shape Shooter was originally going to be called Gopher Shooter and be designed around the
+infamous Gopher Project that Dr. Alisafaee was supervising. The game was going to have the troll enemies be different
+variants of a standard gopher enemy, the weapons were going to be different kinds of Rose Hulman themed weapons, and
+the player was going to be a picture of Dr. Alisafaee. Eventually, it was decided that due to time constraints that the
+theme of the project would change from shooting gophers to shooting shapes.
