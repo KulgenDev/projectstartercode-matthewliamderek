@@ -149,7 +149,7 @@ def main():
                 sys.exit()
 
 
-            if (event.type == pygame.MOUSEBUTTONDOWN or (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE)) and not enemies.hit_player and player.playing:
+            if ((event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed()[0]) or (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE)) and not enemies.hit_player and player.playing:
                 pos = pygame.mouse.get_pos()
                 if not (pos[0] - player.x == 0):
                     angle = math.atan((pos[1] - player.y) / (pos[0] - player.x))
