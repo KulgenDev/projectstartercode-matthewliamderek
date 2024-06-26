@@ -127,7 +127,7 @@ def main():
 
     score_font = pygame.font.Font('font/scorefont.ttf', 70)
 
-    spawn_time = 1
+    spawn_time = 2
     while True:
         final_clock = time.time()
         clock.tick(60)
