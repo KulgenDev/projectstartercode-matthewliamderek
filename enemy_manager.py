@@ -44,7 +44,6 @@ class enemy_manager:
 
     def add_titan(self):
         if self.kills % 50 == 0 and self.kills != self.spawnedTitan:
-            print("test")
             self.spawnedTitan = self.kills
             self.enemies.append(enemy_module.Titan(self.screen, self.player, self))
             self.spawned += 1

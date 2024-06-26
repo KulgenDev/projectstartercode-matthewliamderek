@@ -50,7 +50,12 @@ class Enemy():
         return (self.x <= 120 and self.y <= 250) or (self.x >= 680  and self.y <= 250) or (self.x <= 250 and self.y <= 120) or (self.x >= 550 and self.y <= 250) or (self.x <= 250 and self.y >= 680) or (self.x <=120 and self.y >= 430) or (self.x >= 550 and self.y >= 550)
 
     def draw(self):
-        pygame.draw.circle(self.screen,pygame.Color("Purple"), (self.x,self.y),15)
+        pygame.draw.circle(self.screen,pygame.Color("Purple"), (self.x + 12,self.y + 12),15)
+        basic_enemy_image = pygame.image.load("images/basic_enemy_face.bmp")
+        basic_enemy_image = pygame.transform.scale(basic_enemy_image, (24, 24))
+        self.width = 20
+        self.height = 20
+        self.screen.blit(basic_enemy_image, (self.x, self.y))
 
 class Kamikaze(Enemy):
     def __init__(self,screen,player,manager):
@@ -75,7 +80,12 @@ class Kamikaze(Enemy):
         pygame.mixer.Sound.stop(self.scream)
 
     def draw(self):
-        pygame.draw.circle(self.screen, pygame.Color("Red"), (self.x, self.y), 15)
+        pygame.draw.circle(self.screen, pygame.Color("Red"), (self.x + 13, self.y + 13), 15)
+        kamikaze_enemy_image = pygame.image.load("images/kamikaze_enemy_face.bmp")
+        kamikaze_enemy_image = pygame.transform.scale(kamikaze_enemy_image, (26, 26))
+        self.width = 20
+        self.height = 20
+        self.screen.blit(kamikaze_enemy_image, (self.x, self.y))
 
 
 
@@ -85,7 +95,12 @@ class Shooter(Enemy):
         self.lastShot = time.time()
 
     def draw(self):
-        pygame.draw.circle(self.screen,(0,0,255), (self.x,self.y),15)
+        pygame.draw.circle(self.screen,(0,0,255), (self.x + 12,self.y + 12),15)
+        pistol_enemy_image = pygame.image.load("images/pistol_enemy_face.bmp")
+        pistol_enemy_image = pygame.transform.scale(pistol_enemy_image, (24, 24))
+        self.width = 20
+        self.height = 20
+        self.screen.blit(pistol_enemy_image, (self.x, self.y))
 
     def move(self):
         angle = 90
@@ -133,7 +148,12 @@ class Elite(Shooter):
             self.lastShot = time.time()
 
     def draw(self):
-        pygame.draw.circle(self.screen,(255,255,0), (self.x,self.y),15)
+        pygame.draw.circle(self.screen,(255,255,0), (self.x + 12,self.y + 12),15)
+        elite_enemy_image = pygame.image.load("images/elite_enemy_face.bmp")
+        elite_enemy_image = pygame.transform.scale(elite_enemy_image, (24, 24))
+        self.width = 20
+        self.height = 20
+        self.screen.blit(elite_enemy_image, (self.x, self.y))
 
 class Titan(Enemy):
 
@@ -153,7 +173,13 @@ class Titan(Enemy):
         self.y += self.speed*math.sin(angle)
 
     def draw(self):
-        pygame.draw.circle(self.screen,pygame.Color(37, 145, 37), (self.x,self.y),15)
+        pygame.draw.circle(self.screen,pygame.Color(37, 145, 37), (self.x + 12,self.y + 12),15)
+        titan_enemy_image = pygame.image.load("images/titan_enemy_face.bmp")
+        titan_enemy_image = pygame.transform.scale(titan_enemy_image, (24, 24))
+        self.width = 20
+        self.height = 20
+        self.screen.blit(titan_enemy_image, (self.x, self.y))
+
 
 
 def main():
