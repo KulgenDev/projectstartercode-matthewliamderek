@@ -4,6 +4,9 @@ import math
 import gc
 import sys
 import enemy_bullets_module
+import bullets_module
+import weapon_pickup_module
+import weapon_module
 import random
 import inspect
 global titan_health
@@ -41,7 +44,6 @@ class enemy_manager:
         self.enemies.append(type(self.screen, self.player, self))
         self.spawned += 1
 
-        return
     def shoot(self, screen, x, y, width, height, color, angle):
         self.bullets.append(enemy_bullets_module.EnemyBullet(screen, x, y, width, height, color, angle))
 
@@ -57,6 +59,7 @@ class enemy_manager:
 
             for bullet in self.player.weapon.bullets:
                 if (bullet.x < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15 and bullet.x > enemy.x -15) or (bullet.y+4 < enemy.y + 15 and bullet.y+4 > enemy.y-15 and bullet.x <enemy.x+15 and bullet.x>enemy.x-15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y+4 > enemy.y-15 and bullet.y-4 < enemy.y+15):
+                    # make way for if the bullet is the grenade, it will cause the target to explode in a radius around them and play the explosion sound
                     if isinstance(enemy, enemy_module.Kamikaze):
                         enemy.stopSound()
                         explosion_sound = pygame.mixer.Sound("sfx/explosion.wav")
@@ -75,12 +78,23 @@ class enemy_manager:
                                 pass
                     else:
                         chance = random.randint(1, 100)
-                        if (isinstance(enemy, enemy_module.Shooter) or isinstance(enemy, enemy_module.Kamikaze)) and not type(enemy) == enemy_module.Elite:
-                            if chance >= 95:
+                        if (isinstance(enemy, enemy_module.Titan)):
+                            choice = random.randint(1, 3)
+                            if choice == 1:
+                                self.player.weapon.addPickup(enemy.x, enemy.y, "Fast Bullet")
+                            if choice == 2:
+                                self.player.weapon.addPickup(enemy.x, enemy.y, "Shotgun")
+                            if choice == 3:
+                                self.player.weapon.addPickup(enemy.x, enemy.y, "Grenade")
+                        elif (isinstance(enemy, enemy_module.Shooter) and not type(enemy) == enemy_module.Elite):
+                            if chance >= 90:
                                 self.player.weapon.addPickup(enemy.x, enemy.y, "Fast Bullet")
                         elif isinstance(enemy, enemy_module.Elite):
                             if chance >= 85:
                                 self.player.weapon.addPickup(enemy.x, enemy.y, "Shotgun")
+                        elif isinstance(enemy, enemy_module.Kamikaze):
+                            if chance >= 90:
+                                self.player.weapon.addPickup(enemy.x, enemy.y, "Grenade")
                         try:
                             self.enemies.remove(enemy)
                         except:

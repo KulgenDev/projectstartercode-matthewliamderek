@@ -25,6 +25,7 @@ class Pickup:
             self.removed = True
         self.draw()
 
+
     def draw(self):
         match self.type:
             case "Shotgun":
@@ -39,6 +40,12 @@ class Pickup:
                 self.width = 80
                 self.height = 40
                 self.screen.blit(the_rifle_image, (self.x, self.y))
+            case "Grenade":
+                grenade_launcher_image = pygame.image.load("images/grenade_launcher.bmp")
+                grenade_launcher_image = pygame.transform.scale(grenade_launcher_image, (80, 40))
+                self.width = 80
+                self.height = 40
+                self.screen.blit(grenade_launcher_image, (self.x, self.y))
             case _:
                 pygame.draw.rect(self.screen, pygame.Color("Pink"), (self.x, self.y, 20, 20))
 
@@ -50,6 +57,9 @@ class Pickup:
             case "Fast Bullet":
                 hitbox_2 = pygame.Rect(self.x, self.y, self.width, self.height)
                 return pygame.Rect.colliderect(hitbox_2, pygame.Rect(player.x, player.y, 20, 20))
+            case "Grenade":
+                hitbox_3 = pygame.Rect(self.x, self.y, self.width, self.height)
+                return pygame.Rect.colliderect(hitbox_3, pygame.Rect(player.x, player.y, 20, 20))
             case _:
                 other_hitbox = pygame.Rect(self.x, self.y, self.width, self.height)
                 return pygame.Rect.colliderect(other_hitbox, pygame.Rect(player.x, player.y, 20, 20))

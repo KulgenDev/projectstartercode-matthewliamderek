@@ -75,12 +75,21 @@ def main():
     stats_font = pygame.font.SysFont('trebuchetms', 20)
 
             #purple:
-    purple_title = info_font.render("Basic", True, pygame.Color("Purple"))
+    purple_title = info_font.render("Basic", True, pygame.Color((189, 87, 218)))
 
     purple_stats = stats_font.render("•The most basic enemy", True, (0, 0, 0))
     purple_stats2 = stats_font.render("•Will die when shot", True, (0, 0, 0))
     purple_stats3 = stats_font.render("•No gun", True, (0, 0, 0))
     purple_stats4 = stats_font.render("•No special powers", True, (0, 0, 0))
+    purple_stats5 = stats_font.render("•Won't drop anything", True, (0, 0, 0))
+
+    green_title = info_font.render("Titan", True, pygame.Color(37, 145, 37))
+
+    green_stats = stats_font.render("•VERY tanky", True, (0, 0, 0))
+    green_stats2 = stats_font.render("•Takes 10 shots to die", True, (0, 0, 0))
+    green_stats3 = stats_font.render("•No gun", True, (0, 0, 0))
+    green_stats4 = stats_font.render("•Eats their protein", True, (0, 0, 0))
+    green_stats5 = stats_font.render("•Will drop a weapon", True, (0, 0, 0))
 
             #red:
     red_title = info_font.render("Kamikaze", True, pygame.Color("Red"))
@@ -173,64 +182,76 @@ def main():
 
 
 
-            screen.blit(info_label, (20, screen.get_height()-340))
-            pygame.draw.circle(screen, pygame.Color("Purple"),(45,screen.get_height()-45),20)
+            screen.blit(info_label, (20, screen.get_height()-490))
+            pygame.draw.circle(screen, pygame.Color("Purple"),(45,screen.get_height()-420),20)
 
-            pygame.draw.circle(screen, pygame.Color("Red"),(45,screen.get_height()-120),20)
+            pygame.draw.circle(screen, pygame.Color(37, 145, 37), (45, screen.get_height()-120), 20)
 
-            pygame.draw.circle(screen, pygame.Color("Yellow"),(45,screen.get_height()-195),20)
+            pygame.draw.circle(screen, pygame.Color("Red"),(45,screen.get_height()-195),20)
 
-            pygame.draw.circle(screen, pygame.Color("Blue"),(45,screen.get_height()-270),20)
+            pygame.draw.circle(screen, pygame.Color("Yellow"),(45,screen.get_height()-270),20)
 
-            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-45+20 and mouse_pos[1] >= screen.get_height()-45-20:
-                #DISPLAY INFO FOR PURPLE
-                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-170), (250, 150)))
-                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-170), (250, 150)), 4)
-                screen.blit(purple_title, (80+125 - purple_title.get_width()/2,screen.get_height()-165))
-                screen.blit(purple_stats, (80 + 5, screen.get_height()-135))
-                screen.blit(purple_stats2, (80 + 5, screen.get_height()-115))
-                screen.blit(purple_stats3, (80 + 5, screen.get_height()-95))
-                screen.blit(purple_stats4, (80 + 5, screen.get_height()-75))
+            pygame.draw.circle(screen, pygame.Color("Blue"),(45,screen.get_height()-345),20)
 
+            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height() - 120 + 20 and mouse_pos[1] >= screen.get_height() - 120 - 20:
+                pygame.draw.rect(screen, (136, 136, 136), pygame.Rect((80, screen.get_height() - 220), (250, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-220), (250, 150)), 4)
+                screen.blit(green_title, (80 + 125 - green_title.get_width()/2, screen.get_height()-215))
+                screen.blit(green_stats, (80 + 5, screen.get_height()-185))
+                screen.blit(green_stats2, (80 + 5, screen.get_height()-165))
+                screen.blit(green_stats3, (80 + 5, screen.get_height()-145))
+                screen.blit(green_stats4, (80 + 5, screen.get_height()-125))
+                screen.blit(green_stats5, (80 + 5, screen.get_height()-105))
 
-                #print("hovering over purple")
-            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-120+20 and mouse_pos[1] >= screen.get_height()-120-20:
+            #print("hovering over purple")
+            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-195+20 and mouse_pos[1] >= screen.get_height()-195-20:
                 #DISPLAY INFO FOR Red
-                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-200), (250, 150)))
-                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-200), (250, 150)), 4)
-                screen.blit(red_title, (80+125 - red_title.get_width()/2,screen.get_height()-195))
-                screen.blit(red_stats, (80 + 5, screen.get_height()-165))
-                screen.blit(red_stats2, (80 + 5, screen.get_height()-145))
-                screen.blit(red_stats3, (80 + 5, screen.get_height()-125))
-                screen.blit(red_stats4, (80 + 5, screen.get_height()-105))
-                screen.blit(red_stats5, (80 + 5, screen.get_height()-85))
+                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-245), (250, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-245), (250, 150)), 4)
+                screen.blit(red_title, (80+125 - red_title.get_width()/2,screen.get_height()-240))
+                screen.blit(red_stats, (80 + 5, screen.get_height()-210))
+                screen.blit(red_stats2, (80 + 5, screen.get_height()-190))
+                screen.blit(red_stats3, (80 + 5, screen.get_height()-170))
+                screen.blit(red_stats4, (80 + 5, screen.get_height()-150))
+                screen.blit(red_stats5, (80 + 5, screen.get_height()-130))
 
 
                 #print("hovering over red")
-            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-195+20 and mouse_pos[1] >= screen.get_height()-195-20:
+            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-270+20 and mouse_pos[1] >= screen.get_height()-270-20:
 
                 #DISPLAY INFO FOR Yellow
-                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-240), (250, 150)))
-                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-240), (250, 150)), 4)
-                screen.blit(yellow_title, (80+125 - yellow_title.get_width()/2,screen.get_height()-235))
-                screen.blit(yellow_stats, (80 + 5, screen.get_height()-205))
-                screen.blit(yellow_stats2, (80 + 5, screen.get_height()-185))
-                screen.blit(yellow_stats3, (80 + 5, screen.get_height()-165))
-                screen.blit(yellow_stats4, (80 + 5, screen.get_height()-145))
-                screen.blit(yellow_stats5, (80 + 5, screen.get_height()-125))
-
-                #print("hovering over yellow")
-            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-270+20 and mouse_pos[1] >= screen.get_height()-270-20:
-                #DISPLAY INFO FOR Blue
                 pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-320), (250, 150)))
                 pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-320), (250, 150)), 4)
-                screen.blit(blue_title, (80+125 - blue_title.get_width()/2,screen.get_height()-315))
-                screen.blit(blue_stats, (80 + 5, screen.get_height()-285))
-                screen.blit(blue_stats2, (80 + 5, screen.get_height()-265))
-                screen.blit(blue_stats3, (80 + 5, screen.get_height()-245))
-                screen.blit(blue_stats4, (80 + 5, screen.get_height()-225))
-                screen.blit(blue_stats5, (80 + 5, screen.get_height()-205))
+                screen.blit(yellow_title, (80+125 - yellow_title.get_width()/2,screen.get_height()-315))
+                screen.blit(yellow_stats, (80 + 5, screen.get_height()-285))
+                screen.blit(yellow_stats2, (80 + 5, screen.get_height()-265))
+                screen.blit(yellow_stats3, (80 + 5, screen.get_height()-245))
+                screen.blit(yellow_stats4, (80 + 5, screen.get_height()-225))
+                screen.blit(yellow_stats5, (80 + 5, screen.get_height()-205))
+
+                #print("hovering over yellow")
+            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-345+20 and mouse_pos[1] >= screen.get_height()-345-20:
+                #DISPLAY INFO FOR Blue
+                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-395), (250, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-395), (250, 150)), 4)
+                screen.blit(blue_title, (80+125 - blue_title.get_width()/2,screen.get_height()-390))
+                screen.blit(blue_stats, (80 + 5, screen.get_height()-360))
+                screen.blit(blue_stats2, (80 + 5, screen.get_height()-340))
+                screen.blit(blue_stats3, (80 + 5, screen.get_height()-320))
+                screen.blit(blue_stats4, (80 + 5, screen.get_height()-300))
+                screen.blit(blue_stats5, (80 + 5, screen.get_height()-280))
                 #print("hovering over blue")
+
+            if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-420+20 and mouse_pos[1] >= screen.get_height()-420-20:
+                #DISPLAY INFO FOR PURPLE
+                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-470), (250, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-470), (250, 150)), 4)
+                screen.blit(purple_title, (80+125 - purple_title.get_width()/2,screen.get_height()-465))
+                screen.blit(purple_stats, (80 + 5, screen.get_height()-435))
+                screen.blit(purple_stats2, (80 + 5, screen.get_height()-415))
+                screen.blit(purple_stats3, (80 + 5, screen.get_height()-395))
+                screen.blit(purple_stats4, (80 + 5, screen.get_height()-375))
+                screen.blit(purple_stats5, (80 + 5, screen.get_height()-355))
 
 
 

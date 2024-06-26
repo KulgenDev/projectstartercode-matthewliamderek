@@ -67,6 +67,11 @@ class Bullet:
         shotgun_sound.set_volume(.5)
         shotgun_sound.play(0)
 
+    def play_grenade_sound(self):
+        grenade_sound = pygame.mixer.Sound("sfx/grenade.wav")
+        grenade_sound.set_volume(1)
+        grenade_sound.play(0)
+
 class fastBullet(Bullet):
     def __init__(self, screen, x, y, width, height, color, angle):
         super().__init__(screen, x, y, width, height, color, angle)
@@ -75,6 +80,11 @@ class fastBullet(Bullet):
 class Shotgun(Bullet):
     def __init__(self, screen, x, y, width, height, color, angle):
         super().__init__(screen, x, y, width, height, color, angle)
+
+class Grenade(Bullet):
+    def __init__(self, screen, x, y, width, height, color, angle):
+        super().__init__(screen, x, y, width, height, color, angle)
+        self.speed = 3
 
 
 bullet_list = []
