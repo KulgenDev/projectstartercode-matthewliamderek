@@ -185,14 +185,29 @@ def main():
 
             screen.blit(info_label, (20, screen.get_height()-490))
             pygame.draw.circle(screen, pygame.Color("Purple"),(45,screen.get_height()-420),20)
+            basic_enemy_image = pygame.image.load("images/basic_enemy_face.bmp")
+            basic_enemy_image = pygame.transform.scale(basic_enemy_image, (40, 40))
+            screen.blit(basic_enemy_image, (25, screen.get_height() - 420 - 20))
 
             pygame.draw.circle(screen, pygame.Color(37, 145, 37), (45, screen.get_height()-120), 20)
+            titan_enemy_image = pygame.image.load("images/titan_enemy_face.bmp")
+            titan_enemy_image = pygame.transform.scale(titan_enemy_image, (40, 40))
+            screen.blit(titan_enemy_image, (25, screen.get_height() - 120 - 20))
 
             pygame.draw.circle(screen, pygame.Color("Red"),(45,screen.get_height()-195),20)
+            kamikaze_enemy_image = pygame.image.load("images/kamikaze_enemy_face.bmp")
+            kamikaze_enemy_image = pygame.transform.scale(kamikaze_enemy_image, (40, 40))
+            screen.blit(kamikaze_enemy_image, (25, screen.get_height() - 195 - 20))
 
             pygame.draw.circle(screen, pygame.Color("Yellow"),(45,screen.get_height()-270),20)
+            elite_enemy_image = pygame.image.load("images/elite_enemy_face.bmp")
+            elite_enemy_image = pygame.transform.scale(elite_enemy_image, (40, 40))
+            screen.blit(elite_enemy_image, (25, screen.get_height() - 270 - 20))
 
             pygame.draw.circle(screen, pygame.Color("Blue"),(45,screen.get_height()-345),20)
+            pistol_enemy_image = pygame.image.load("images/pistol_enemy_face.bmp")
+            pistol_enemy_image = pygame.transform.scale(pistol_enemy_image, (40, 40))
+            screen.blit(pistol_enemy_image, (25, screen.get_height() - 345 - 20))
 
             if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height() - 120 + 20 and mouse_pos[1] >= screen.get_height() - 120 - 20:
                 pygame.draw.rect(screen, (136, 136, 136), pygame.Rect((80, screen.get_height() - 220), (250, 150)))
