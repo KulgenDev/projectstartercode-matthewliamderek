@@ -67,7 +67,7 @@ class enemy_manager:
                 if (bullet.x < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15 and bullet.x > enemy.x -15) or (bullet.y+4 < enemy.y + 15 and bullet.y+4 > enemy.y-15 and bullet.x <enemy.x+15 and bullet.x>enemy.x-15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y+4 > enemy.y-15 and bullet.y-4 < enemy.y+15):
                     # make way for if the bullet is the grenade, it will cause the target to explode in a radius around them and play the explosion sound
                     if isinstance(bullet, bullets_module.Grenade):
-                        explosion_sound = pygame.mixer.Sound("sfx/explosion.wav")
+                        explosion_sound = pygame.mixer.Sound("sfx/grenade_explosion.wav")
                         explosion_sound.set_volume(1)
                         explosion_sound.play()
                         for i in range(24):
