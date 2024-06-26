@@ -172,7 +172,8 @@ def main():
 
 
             # TODO: Add you events code
-        player.weapon.fire(player.x, player.y, random.randint(0,360))  # Fisher gun
+        #player.weapon.fire(player.x, player.y, random.randint(0,360))  # Fisher gun
+        # no cheating Mr. Fisher
         ## START GAME SCREEN
         if not player.playing:
             mouse_pos = pygame.mouse.get_pos()
