@@ -265,7 +265,7 @@ def main():
             topscorefile = open("topscore","r")
             #print(int(topscorefile.read()))
             screen.fill((0, 0, 0))
-            spawn_time = 1
+            spawn_time = 2
             enemies.bullets = []
             enemies.enemies = []
             try:
