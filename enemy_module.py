@@ -104,7 +104,7 @@ class Shooter(Enemy):
 
     def move(self):
         angle = 90
-        location_of_player = (self.player.x, self.player.y)
+        location_of_player = (self.player.x + 10, self.player.y + 10)
         if location_of_player[0] != self.x:
             angle = math.atan((location_of_player[1] - self.y) / (location_of_player[0] - self.x))
         if self.x > location_of_player[0]:
@@ -128,7 +128,7 @@ class Elite(Shooter):
 
     def move(self):
         angle = 90
-        location_of_player = (self.player.x, self.player.y)
+        location_of_player = (self.player.x + 10, self.player.y + 10)
         if location_of_player[0] != self.x:
             angle = math.atan((location_of_player[1] - self.y) / (location_of_player[0] - self.x))
         if self.x > location_of_player[0]:
