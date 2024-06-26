@@ -95,7 +95,7 @@ class enemy_manager:
                             except:
                                 pass
                     else:
-                        chance = random.randint(90, 100)
+                        chance = random.randint(20, 100)
                         if (isinstance(enemy, enemy_module.Shooter) and not type(enemy) == enemy_module.Elite):
                             if chance >= 85:
                                 self.player.weapon.addPickup(enemy.x, enemy.y, "Fast Bullet")
