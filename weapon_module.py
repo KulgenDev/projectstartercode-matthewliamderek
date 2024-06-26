@@ -30,6 +30,10 @@ class Weapon:
         if self.ammo <= 0:
             self.changeWeapon("Bullet", 0)
 
+    def grenadeFire(self, x, y, angle, color):
+        self.bullets.append(bullets_module.Bullet(self.screen, x, y, 4, 4, color, angle))
+
+
     def ammo_counter(self):
         if self.ammo == 0:
             return "Infinite"

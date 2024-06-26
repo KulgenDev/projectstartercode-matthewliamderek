@@ -84,7 +84,7 @@ class Shotgun(Bullet):
 class Grenade(Bullet):
     def __init__(self, screen, x, y, width, height, color, angle):
         super().__init__(screen, x, y, width, height, color, angle)
-        self.speed = 3
+        self.speed = 5
 
 
 bullet_list = []
