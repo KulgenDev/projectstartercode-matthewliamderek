@@ -53,8 +53,8 @@ class Enemy():
         pygame.draw.circle(self.screen,pygame.Color("Purple"), (self.x + 12,self.y + 12),15)
         basic_enemy_image = pygame.image.load("images/basic_enemy_face.bmp")
         basic_enemy_image = pygame.transform.scale(basic_enemy_image, (24, 24))
-        self.width = 20
-        self.height = 20
+        self.width = 30
+        self.height = 30
         self.screen.blit(basic_enemy_image, (self.x, self.y))
 
 class Kamikaze(Enemy):
@@ -83,8 +83,8 @@ class Kamikaze(Enemy):
         pygame.draw.circle(self.screen, pygame.Color("Red"), (self.x + 13, self.y + 13), 15)
         kamikaze_enemy_image = pygame.image.load("images/kamikaze_enemy_face.bmp")
         kamikaze_enemy_image = pygame.transform.scale(kamikaze_enemy_image, (26, 26))
-        self.width = 20
-        self.height = 20
+        self.width = 30
+        self.height = 30
         self.screen.blit(kamikaze_enemy_image, (self.x, self.y))
 
 
@@ -98,8 +98,8 @@ class Shooter(Enemy):
         pygame.draw.circle(self.screen,(0,0,255), (self.x + 12,self.y + 12),15)
         pistol_enemy_image = pygame.image.load("images/pistol_enemy_face.bmp")
         pistol_enemy_image = pygame.transform.scale(pistol_enemy_image, (24, 24))
-        self.width = 20
-        self.height = 20
+        self.width = 30
+        self.height = 30
         self.screen.blit(pistol_enemy_image, (self.x, self.y))
 
     def move(self):
@@ -151,8 +151,8 @@ class Elite(Shooter):
         pygame.draw.circle(self.screen,(255,255,0), (self.x + 12,self.y + 12),15)
         elite_enemy_image = pygame.image.load("images/elite_enemy_face.bmp")
         elite_enemy_image = pygame.transform.scale(elite_enemy_image, (24, 24))
-        self.width = 20
-        self.height = 20
+        self.width = 30
+        self.height = 30
         self.screen.blit(elite_enemy_image, (self.x, self.y))
 
 class Titan(Enemy):
@@ -176,8 +176,8 @@ class Titan(Enemy):
         pygame.draw.circle(self.screen,pygame.Color(37, 145, 37), (self.x + 12,self.y + 12),15)
         titan_enemy_image = pygame.image.load("images/titan_enemy_face.bmp")
         titan_enemy_image = pygame.transform.scale(titan_enemy_image, (24, 24))
-        self.width = 20
-        self.height = 20
+        self.width = 30
+        self.height = 30
         self.screen.blit(titan_enemy_image, (self.x, self.y))
 
 
