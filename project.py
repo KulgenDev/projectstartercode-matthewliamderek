@@ -88,7 +88,7 @@ def main():
     green_title = info_font.render("Titan", True, pygame.Color(37, 145, 37))
 
     green_stats = stats_font.render("•VERY tanky", True, (0, 0, 0))
-    green_stats2 = stats_font.render("•Takes 10 shots to die", True, (0, 0, 0))
+    green_stats2 = stats_font.render("•Takes 15 shots to die", True, (0, 0, 0))
     green_stats3 = stats_font.render("•No gun", True, (0, 0, 0))
     green_stats4 = stats_font.render("•Eats their protein", True, (0, 0, 0))
     green_stats5 = stats_font.render("•Will drop a weapon", True, (0, 0, 0))
@@ -100,7 +100,7 @@ def main():
     red_stats2 = stats_font.render("•Will die when shot", True, (0, 0, 0))
     red_stats3 = stats_font.render("•No gun", True, (0, 0, 0))
     red_stats4 = stats_font.render("•Ex singer", True, (0, 0, 0))
-    red_stats5 = stats_font.render("•Might drop a spare rifle", True, (0, 0, 0))
+    red_stats5 = stats_font.render("•Might drop a grenade launcher", True, (0, 0, 0))
 
             #yellow:
     yellow_title = info_font.render("Shotgun", True, pygame.Color("Yellow"))
@@ -230,9 +230,9 @@ def main():
             #print("hovering over purple")
             if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height()-195+20 and mouse_pos[1] >= screen.get_height()-195-20:
                 #DISPLAY INFO FOR Red
-                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-245), (250, 150)))
-                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-245), (250, 150)), 4)
-                screen.blit(red_title, (80+125 - red_title.get_width()/2,screen.get_height()-240))
+                pygame.draw.rect(screen, (136,136,136), pygame.Rect((80, screen.get_height()-245), (300, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((80, screen.get_height()-245), (300, 150)), 4)
+                screen.blit(red_title, (80+150 - red_title.get_width()/2,screen.get_height()-240))
                 screen.blit(red_stats, (80 + 5, screen.get_height()-210))
                 screen.blit(red_stats2, (80 + 5, screen.get_height()-190))
                 screen.blit(red_stats3, (80 + 5, screen.get_height()-170))
