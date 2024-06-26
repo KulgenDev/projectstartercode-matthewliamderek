@@ -52,7 +52,7 @@ class Weapon:
         elif type == "Shotgun":
             self.pickups.append(weapon_pickup_module.Pickup(self.screen, x, y, 15, 15, pygame.Color("Orange"), "Shotgun", 25))
         elif type == "Grenade":
-            self.pickups.append(weapon_pickup_module.Pickup(self.screen, x, y, 15, 15, pygame.Color("Purple"), "Grenade", 20))
+            self.pickups.append(weapon_pickup_module.Pickup(self.screen, x, y, 15, 15, pygame.Color("Purple"), "Grenade", 10))
 
     def removeOffScreen(self):
         for bullet in self.bullets:
