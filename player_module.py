@@ -11,7 +11,7 @@ class Player:
         self.speed = speed
         self.screen = screen
         self.weapon = weapon_module.Weapon(self.screen)
-        self.hitbox = pygame.Rect(self.x, self.y, 20, 20)
+        self.hitbox = pygame.rect.Rect(self.x+5, self.y+5, 10, 10)
         self.OriginalX = x
         self.OriginalY = y
         self.playing = False
@@ -29,7 +29,7 @@ class Player:
         self.weapon.process(self)
         #Derek needs to change line 59 of bullets_module from "if self.x < self.screen.get_width():" to "if self.x > self.screen.get_width():"
         self.removeBullets()
-        self.hitbox = pygame.Rect(self.x, self.y, 20, 20)
+        self.hitbox = pygame.Rect(self.x+3, self.y+3, 14, 14)
 
 
     def outOffBounds(self):
