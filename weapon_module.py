@@ -20,8 +20,8 @@ class Weapon:
             self.bullets[len(self.bullets) - 1].play_bullet_sound()
         elif self.type == self.types["Shotgun"]:
             self.bullets.append(self.type(self.screen, x, y, 4, 4, pygame.Color("Green"), angle))
-            self.bullets.append(self.type(self.screen, x, y, 4, 4, pygame.Color("Green"), angle + math.pi/8))
-            self.bullets.append(self.type(self.screen, x, y, 4, 4, pygame.Color("Green"), angle - math.pi/8))
+            self.bullets.append(self.type(self.screen, x, y, 4, 4, pygame.Color("Green"), angle + math.pi/15))
+            self.bullets.append(self.type(self.screen, x, y, 4, 4, pygame.Color("Green"), angle - math.pi/15))
             self.bullets[len(self.bullets) - 1].play_shotgun_sound()
         self.ammo -= 1
         if self.ammo <= 0:
@@ -45,9 +45,9 @@ class Weapon:
 
     def addPickup(self, x, y, type):
         if type == "Fast Bullet":
-            self.pickups.append(weapon_pickup_module.Pickup(self.screen, x, y, 15, 15, pygame.Color("Pink"), "Fast Bullet", 40))
+            self.pickups.append(weapon_pickup_module.Pickup(self.screen, x, y, 15, 15, pygame.Color("Pink"), "Fast Bullet", 35))
         elif type == "Shotgun":
-            self.pickups.append(weapon_pickup_module.Pickup(self.screen, x, y, 15, 15, pygame.Color("Orange"), "Shotgun", 30))
+            self.pickups.append(weapon_pickup_module.Pickup(self.screen, x, y, 15, 15, pygame.Color("Orange"), "Shotgun", 25))
 
     def removeOffScreen(self):
         for bullet in self.bullets:
