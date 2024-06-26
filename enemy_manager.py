@@ -23,26 +23,31 @@ class enemy_manager:
         self.hit_player = False
         self.bullets = []
         self.pickups = []
+        self.spawnedTitan = 0
         self.Types = {"Enemy" : enemy_module.Enemy, "Shooter" : enemy_module.Shooter, "Elite" : enemy_module.Elite, "Kamikaze" : enemy_module.Kamikaze, "Titan" : enemy_module.Titan}
 
     def add_enemy(self):
-        if self.kills % 50 == 0 and self.kills != 0:
-            type = self.Types["Titan"]
-        else:
-            chance = random.randint(1, 100)
-            type = self.Types["Enemy"]
-            match chance:
-                case chance if 1 < chance < 40:
-                    type = self.Types["Enemy"]
-                case chance if 41 < chance < 64:
-                    type = self.Types["Kamikaze"]
-                case chance if 65 < chance < 85:
-                    type = self.Types["Shooter"]
-                case chance if 86 < chance < 100:
-                    type = self.Types["Elite"]
+        chance = random.randint(1, 100)
+        type = self.Types["Enemy"]
+        match chance:
+            case chance if 1 < chance < 40:
+                type = self.Types["Enemy"]
+            case chance if 41 < chance < 64:
+                type = self.Types["Kamikaze"]
+            case chance if 65 < chance < 85:
+                type = self.Types["Shooter"]
+            case chance if 86 < chance < 100:
+                type = self.Types["Elite"]
 
         self.enemies.append(type(self.screen, self.player, self))
         self.spawned += 1
+
+    def add_titan(self):
+        if self.kills % 50 == 0 and self.kills != self.spawnedTitan:
+            print("test")
+            self.spawnedTitan = self.kills
+            self.enemies.append(enemy_module.Titan(self.screen, self.player, self))
+            self.spawned += 1
 
     def shoot(self, screen, x, y, width, height, color, angle):
         self.bullets.append(enemy_bullets_module.EnemyBullet(screen, x, y, width, height, color, angle))
@@ -55,11 +60,18 @@ class enemy_manager:
                 self.bullets.remove(bullet)
 
     def check_for_dead(self):
+        enemiesToRemove = []
         for enemy in self.enemies:
 
             for bullet in self.player.weapon.bullets:
                 if (bullet.x < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15 and bullet.x > enemy.x -15) or (bullet.y+4 < enemy.y + 15 and bullet.y+4 > enemy.y-15 and bullet.x <enemy.x+15 and bullet.x>enemy.x-15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y+4 > enemy.y-15 and bullet.y-4 < enemy.y+15):
                     # make way for if the bullet is the grenade, it will cause the target to explode in a radius around them and play the explosion sound
+                    if isinstance(bullet, bullets_module.Grenade):
+                        explosion_sound = pygame.mixer.Sound("sfx/explosion.wav")
+                        explosion_sound.set_volume(1)
+                        explosion_sound.play()
+                        for i in range(24):
+                            self.player.weapon.grenadeFire(bullet.x, bullet.y, math.pi / 12 * i, pygame.Color("Green"))
                     if isinstance(enemy, enemy_module.Kamikaze):
                         enemy.stopSound()
                         explosion_sound = pygame.mixer.Sound("sfx/explosion.wav")
@@ -68,25 +80,24 @@ class enemy_manager:
                     if isinstance(enemy, enemy_module.Titan):
                         self.player.weapon.bullets.remove(bullet)
                         enemy.titan_health += 1
-                        if enemy.titan_health == 10:
+                        if enemy.titan_health >= 10:
                             try:
                                 enemy.titan_health = 0
                                 self.enemies.remove(enemy)
                                 self.kills += 1
+                                choice = random.randint(1, 3)
+                                if choice == 1:
+                                    self.player.weapon.addPickup(enemy.x, enemy.y, "Fast Bullet")
+                                if choice == 2:
+                                    self.player.weapon.addPickup(enemy.x, enemy.y, "Shotgun")
+                                if choice == 3:
+                                    self.player.weapon.addPickup(enemy.x, enemy.y, "Grenade")
                                 gc.collect()
                             except:
                                 pass
                     else:
                         chance = random.randint(1, 100)
-                        if (isinstance(enemy, enemy_module.Titan)):
-                            choice = random.randint(1, 3)
-                            if choice == 1:
-                                self.player.weapon.addPickup(enemy.x, enemy.y, "Fast Bullet")
-                            if choice == 2:
-                                self.player.weapon.addPickup(enemy.x, enemy.y, "Shotgun")
-                            if choice == 3:
-                                self.player.weapon.addPickup(enemy.x, enemy.y, "Grenade")
-                        elif (isinstance(enemy, enemy_module.Shooter) and not type(enemy) == enemy_module.Elite):
+                        if (isinstance(enemy, enemy_module.Shooter) and not type(enemy) == enemy_module.Elite):
                             if chance >= 85:
                                 self.player.weapon.addPickup(enemy.x, enemy.y, "Fast Bullet")
                         elif isinstance(enemy, enemy_module.Elite):
@@ -95,13 +106,23 @@ class enemy_manager:
                         elif isinstance(enemy, enemy_module.Kamikaze):
                             if chance >= 90:
                                 self.player.weapon.addPickup(enemy.x, enemy.y, "Grenade")
+
+                        if enemy not in enemiesToRemove:
+                            enemiesToRemove.append(enemy)
+                        #except Exception as e:
+                        #    print(f"failed to remove {enemy} due to {e}")
+
+
                         try:
-                            self.enemies.remove(enemy)
+                            self.player.weapon.bullets.remove(bullet)
                         except:
-                            pass
-                        self.player.weapon.bullets.remove(bullet)
-                        self.kills += 1
+                            print(f"failed to remove {bullet}")
                         gc.collect()
+
+        for enemy in enemiesToRemove:
+            self.enemies.remove(enemy)
+            self.kills += 1
+            gc.collect()
 
                    # print(len(self.enemies))
                    # print(len(self.player.weapon.bullets))

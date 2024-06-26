@@ -349,6 +349,7 @@ def main():
                 init_clock = final_clock
 
             enemies.spawn_enemies()
+            enemies.add_titan()
             enemies.move_enemies()
             enemies.check_for_dead()
             enemies.check_hit_player()
