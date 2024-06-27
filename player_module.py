@@ -62,6 +62,9 @@ class Player:
     def speed_up(self):
         self.speed += 0.25
 
+    def speed_reset(self):
+        self.speed = 3
+
     def get_speed(self):
         return self.speed
 

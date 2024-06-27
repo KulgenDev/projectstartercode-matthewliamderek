@@ -174,6 +174,8 @@ def main():
                     supershots = 3
                     speed_amount = 0
                     life_amount = 0
+                    player.speed = 3
+                    player.speed_reset()
                     pygame.mixer.music.play()
                     player.x = player.OriginalX
                     player.weapon.pickups = []
@@ -409,7 +411,7 @@ def main():
             screen.blit(speed_boost_image, (10, 100))
 
             try:
-                speed_label = score_font.render(f"{player.speed - 3}", True, (255, 0, 0))
+                speed_label = score_font.render(f"{int((player.speed - 3) * 4)}", True, (255, 0, 0))
             except:
                 speed_label = score_font.render("0", True, (255, 0, 0))
             screen.blit(speed_label, (50, 100))
