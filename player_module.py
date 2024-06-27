@@ -2,13 +2,18 @@ import pygame
 import sys
 import weapon_module
 import math
+global speed_amount
+
 
 
 class Player:
     def __init__(self, screen, x, y, speed):
         self.x = x
         self.y = y
-        self.speed = speed
+        try:
+            self.speed = speed + speed_amount
+        except:
+            self.speed = speed
         self.screen = screen
         self.weapon = weapon_module.Weapon(self.screen)
         self.hitbox = pygame.rect.Rect(self.x+5, self.y+5, 10, 10)
@@ -53,6 +58,12 @@ class Player:
             self.x -= self.speed
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.x += self.speed
+
+    def speed_up(self):
+        self.speed += 0.25
+
+    def get_speed(self):
+        return self.speed
 
     def colliding(self, wallRect : pygame.Rect):
         X = self.x <= wallRect.left or self.x + 20 >= wallRect.right

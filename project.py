@@ -8,6 +8,11 @@ import enemy_manager
 import time
 import math
 import wall_module
+global speed_amount
+global life_amount
+
+speed_amount = 0
+life_amount = 0
 
 def main():
     pygame.event.set_grab(True)
@@ -167,6 +172,8 @@ def main():
                     player.weapon.bullets = []
                     enemies.kills = 0
                     supershots = 3
+                    speed_amount = 0
+                    life_amount = 0
                     pygame.mixer.music.play()
                     player.x = player.OriginalX
                     player.weapon.pickups = []
@@ -397,9 +404,31 @@ def main():
             super_label = score_font.render(f"SUPERS: {supershots}", True, (255, 0, 0))
             screen.blit(super_label, (525, 50))
 
-            #pygame.draw.rect(screen, (255,255,255), player.hitbox)
+            speed_boost_image = pygame.image.load("images/speed_boost.bmp")
+            speed_boost_image = pygame.transform.scale(speed_boost_image, (30, 40))
+            screen.blit(speed_boost_image, (10, 100))
 
-            # TODO: Add your project code
+            try:
+                speed_label = score_font.render(f"{player.speed - 3}", True, (255, 0, 0))
+            except:
+                speed_label = score_font.render("0", True, (255, 0, 0))
+            screen.blit(speed_label, (50, 100))
+
+            """
+            false_life_image = pygame.image.load("images/false_life.bmp")
+            false_life_image = pygame.transform.scale(false_life_image, (40, 40))
+            screen.blit(false_life_image, (10, 175))
+            """
+
+            """
+            try:
+                life_label = score_font.render(f"{life_amount}", True, (255, 0, 0))
+            except:
+                life_label = score_font.render("0", True, (255, 0, 0))
+            screen.blit(life_label, (50, 175))
+            """
+
+            #pygame.draw.rect(screen, (2s55,255,255), player.hitbox)
 
             # don't forget the update, otherwise nothing will show up!
         pygame.display.update()

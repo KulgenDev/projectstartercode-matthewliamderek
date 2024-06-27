@@ -7,10 +7,12 @@ import enemy_bullets_module
 import bullets_module
 import weapon_pickup_module
 import weapon_module
+import player_module
 import random
 import inspect
 global titan_health
-
+global speed_amount
+global life_amount
 
 
 class enemy_manager:
@@ -97,14 +99,38 @@ class enemy_manager:
                     else:
                         chance = random.randint(20, 100)
                         if (isinstance(enemy, enemy_module.Shooter) and not type(enemy) == enemy_module.Elite):
-                            if chance >= 85:
+                            if chance >= 90:
                                 self.player.weapon.addPickup(enemy.x, enemy.y, "Fast Bullet")
+                            elif chance >= 85:
+                                if self.player.speed == 7:
+                                    pass
+                                else:
+                                    self.player.speed_up()
+                                    power_up_sound = pygame.mixer.Sound("sfx/power_up.wav")
+                                    power_up_sound.set_volume(1)
+                                    power_up_sound.play(0)
                         elif isinstance(enemy, enemy_module.Elite):
                             if chance >= 85:
                                 self.player.weapon.addPickup(enemy.x, enemy.y, "Shotgun")
+                            elif chance >= 80:
+                                if self.player.speed == 7:
+                                    pass
+                                else:
+                                    self.player.speed_up()
+                                    power_up_sound = pygame.mixer.Sound("sfx/power_up.wav")
+                                    power_up_sound.set_volume(1)
+                                    power_up_sound.play(0)
                         elif isinstance(enemy, enemy_module.Kamikaze):
                             if chance >= 90:
                                 self.player.weapon.addPickup(enemy.x, enemy.y, "Grenade")
+                            elif chance >= 85:
+                                if self.player.speed == 7:
+                                    pass
+                                else:
+                                    self.player.speed_up()
+                                    power_up_sound = pygame.mixer.Sound("sfx/power_up.wav")
+                                    power_up_sound.set_volume(1)
+                                    power_up_sound.play(0)
 
                         if enemy not in enemiesToRemove:
                             enemiesToRemove.append(enemy)
@@ -168,7 +194,6 @@ class enemy_manager:
                     if distance < 35:
                         enemy.x, enemy.y = first_pos
                         break
-
         # for enemy in self.enemies:
         #     enemy.move()
 
