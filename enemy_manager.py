@@ -62,17 +62,15 @@ class enemy_manager:
 
     def check_for_dead(self):
         enemiesToRemove = []
+        grenadesToExplode = []
         for enemy in self.enemies:
 
             for bullet in self.player.weapon.bullets:
                 if (bullet.x < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15 and bullet.x > enemy.x -15) or (bullet.y+4 < enemy.y + 15 and bullet.y+4 > enemy.y-15 and bullet.x <enemy.x+15 and bullet.x>enemy.x-15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y > enemy.y-15 and bullet.y < enemy.y+15) or (bullet.x+4 > enemy.x-15 and bullet.x+4 < enemy.x+15 and bullet.y+4 > enemy.y-15 and bullet.y-4 < enemy.y+15):
                     # make way for if the bullet is the grenade, it will cause the target to explode in a radius around them and play the explosion sound
                     if isinstance(bullet, bullets_module.Grenade):
-                        explosion_sound = pygame.mixer.Sound("sfx/grenade_explosion.wav")
-                        explosion_sound.set_volume(1)
-                        explosion_sound.play()
-                        for i in range(24):
-                            self.player.weapon.grenadeFire(bullet.x, bullet.y, math.pi / 12 * i, pygame.Color("Green"))
+                        if not bullet in grenadesToExplode:
+                            grenadesToExplode.append(bullet)
                     if isinstance(enemy, enemy_module.Kamikaze):
                         enemy.stopSound()
                         explosion_sound = pygame.mixer.Sound("sfx/explosion.wav")
@@ -148,6 +146,12 @@ class enemy_manager:
             self.enemies.remove(enemy)
             self.kills += 1
             gc.collect()
+        for grenade in grenadesToExplode:
+            explosion_sound = pygame.mixer.Sound("sfx/grenade_explosion.wav")
+            explosion_sound.set_volume(1)
+            explosion_sound.play()
+            for i in range(24):
+                self.player.weapon.grenadeFire(grenade.x, grenade.y, math.pi / 12 * i, pygame.Color("Green"))
 
                    # print(len(self.enemies))
                    # print(len(self.player.weapon.bullets))
