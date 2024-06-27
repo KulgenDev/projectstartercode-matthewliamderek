@@ -129,7 +129,7 @@ def main():
                     angle = math.atan((pos[1] - player.y)/(pos[0] - player.x))
                     if pos[0] - player.x < 0:
                         angle += math.pi
-#                   bullets.append(testBullet(screen, player.x, player.y, angle))
+
                     player.weapon.fire(player.x, player.y , angle)
 
         screen.fill((0, 0, 0))
