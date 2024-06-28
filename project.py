@@ -82,6 +82,8 @@ def main():
     ## INFO MENU VARIABLE DECLERATIONS BELOW:
 
     info_font = pygame.font.Font('font/scorefont.ttf', 50)
+    enemy_label = info_font.render("Enemy", True, (255, 255, 255))
+    weapon_label = info_font.render("Weapon", True, (255, 255, 255))
     info_label = info_font.render('Info:', True, (255, 255, 255))
     stats_font = pygame.font.SysFont('trebuchetms', 20)
 
@@ -129,8 +131,37 @@ def main():
     blue_stats4 = stats_font.render("•Shoots 1 at a time", True, (0, 0, 0))
     blue_stats5 = stats_font.render("•Might drop a spare rifle", True, (0, 0, 0))
 
+    sniper_title = info_font.render("Sniper Rifle", True, pygame.Color(255, 255, 255))
 
-    #trebuchetms
+    sniper_stats = stats_font.render("•Chance to drop from", True, (0, 0, 0))
+    sniper_stats2 = stats_font.render("Pistol and Titan enemies", True, (0, 0, 0))
+    sniper_stats3 = stats_font.render("•Bullets shoot faster", True, (0, 0, 0))
+    sniper_stats4 = stats_font.render("•35 Ammo per Rifle", True, (0, 0, 0))
+    sniper_stats5 = stats_font.render("•Snipin's a good job, mate", True, (0, 0, 0))
+
+    shotgun_title = info_font.render("Shotgun", True, (255, 255, 255))
+
+    shotgun_stats = stats_font.render("•Chance to drop from", True, (0, 0, 0))
+    shotgun_stats2 = stats_font.render("Shotgun and Titan enemies", True, (0, 0, 0))
+    shotgun_stats3 = stats_font.render("•Multiple bullets shot", True, (0, 0, 0))
+    shotgun_stats4 = stats_font.render("•25 Ammo per Shotgun", True, (0, 0, 0))
+    shotgun_stats5 = stats_font.render("•And I want the front seat", True, (0, 0, 0))
+
+    launcher_title = info_font.render("Grenade Launcher", True, (255, 255, 255))
+
+    launcher_stats = stats_font.render("•Chance to drop from", True, (0, 0, 0))
+    launcher_stats2 = stats_font.render("Kamikaze and Titans", True, (0, 0, 0))
+    launcher_stats3 = stats_font.render("•Releases shrapnel", True, (0, 0, 0))
+    launcher_stats4 = stats_font.render("•10 Ammo per Launcher", True, (0, 0, 0))
+    launcher_stats5= stats_font.render("•Kablewwwwwwwy!", True, (0, 0, 0))
+
+    controls_title1 = info_font.render("Controls", True, (255, 255, 255))
+    controls_title2 = stats_font.render("WASD or Arrow Keys to Move", True, (255, 255, 255))
+    controls_title3 = stats_font.render("Space Button or Mouse Click to Shoot your Weapon", True, (255, 255, 255))
+    controls_title4 = stats_font.render("Aim your Weapon by Moving your Mouse or Using your Mousepad", True, (255, 255, 255))
+    controls_title5 = stats_font.render("Press F to Use a Super Shot", True, (255, 255, 255))
+
+    #trebuchet
 
 
 
@@ -205,10 +236,12 @@ def main():
 
 
 
+
+            screen.blit(enemy_label, (10, screen.get_height() - 520))
             screen.blit(info_label, (20, screen.get_height()-490))
             pygame.draw.circle(screen, pygame.Color("Purple"),(45,screen.get_height()-420),20)
             basic_enemy_image = pygame.image.load("images/basic_enemy_face.bmp")
-            basic_enemy_image = pygame.transform.scale(basic_enemy_image, (40, 40))
+            basic_enemy_image = pygame.transform.scale(basic_enemy_image, (38, 38))
             screen.blit(basic_enemy_image, (25, screen.get_height() - 420 - 20))
 
             pygame.draw.circle(screen, pygame.Color(37, 145, 37), (45, screen.get_height()-120), 20)
@@ -230,6 +263,53 @@ def main():
             pistol_enemy_image = pygame.image.load("images/pistol_enemy_face.bmp")
             pistol_enemy_image = pygame.transform.scale(pistol_enemy_image, (40, 40))
             screen.blit(pistol_enemy_image, (25, screen.get_height() - 345 - 20))
+
+            screen.blit(weapon_label, (690, screen.get_height() - 445))
+            screen.blit(info_label, (710, screen.get_height()-415))
+
+            sniper_rifle_image = pygame.image.load("images/sniper_rifle_image.bmp")
+            sniper_rifle_image = pygame.transform.scale(sniper_rifle_image, (80, 40))
+            screen.blit(sniper_rifle_image, (700, screen.get_height() - 345 - 20))
+
+            if mouse_pos[0] <= 780 and mouse_pos[0] >= 700 and mouse_pos[1] < screen.get_height() - 345 + 20 and mouse_pos[1] >= screen.get_height() - 345 - 20:
+                pygame.draw.rect(screen, (136,136,136), pygame.Rect((450, screen.get_height()-395), (250, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((450, screen.get_height()-395), (250, 150)), 4)
+                screen.blit(sniper_title, (450+125 - sniper_title.get_width()/2,screen.get_height()-390))
+                screen.blit(sniper_stats, (450 + 5, screen.get_height()-360))
+                screen.blit(sniper_stats2, (450 + 5, screen.get_height()-340))
+                screen.blit(sniper_stats3, (450 + 5, screen.get_height()-320))
+                screen.blit(sniper_stats4, (450 + 5, screen.get_height()-300))
+                screen.blit(sniper_stats5, (450 + 5, screen.get_height()-280))
+
+            shotgun_image = pygame.image.load("images/shotgun_image.bmp")
+            shotgun_image = pygame.transform.scale(shotgun_image, (82.5, 20))
+            screen.blit(shotgun_image, (700, screen.get_height() - 260 - 20))
+
+            if mouse_pos[0] <= 780 and mouse_pos[0] >= 700 and mouse_pos[1] < screen.get_height() - 270 + 20 and mouse_pos[1] >= screen.get_height() - 270 - 20:
+                pygame.draw.rect(screen, (136, 136, 136), pygame.Rect((450, screen.get_height() - 320), (250, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((450, screen.get_height() - 320), (250, 150)), 4)
+                screen.blit(shotgun_title, (450 + 125 - shotgun_title.get_width() / 2, screen.get_height() - 315))
+                screen.blit(shotgun_stats, (450 + 5, screen.get_height() - 285))
+                screen.blit(shotgun_stats2, (450 + 5, screen.get_height() - 265))
+                screen.blit(shotgun_stats3, (450 + 5, screen.get_height() - 245))
+                screen.blit(shotgun_stats4, (450 + 5, screen.get_height() - 225))
+                screen.blit(shotgun_stats5, (450 + 5, screen.get_height() - 205))
+
+            grenade_launcher_image = pygame.image.load("images/grenade_launcher.bmp")
+            grenade_launcher_image = pygame.transform.scale(grenade_launcher_image, (80, 40))
+            screen.blit(grenade_launcher_image, (700, screen.get_height() - 195 - 20))
+
+            if mouse_pos[0] <= 780 and mouse_pos[0] >= 700 and mouse_pos[1] < screen.get_height()-195+20 and mouse_pos[1] >= screen.get_height()-195-20:
+                #DISPLAY INFO FOR Red
+                pygame.draw.rect(screen, (136,136,136), pygame.Rect((450, screen.get_height()-245), (250, 150)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((450, screen.get_height()-245), (250, 150)), 4)
+                screen.blit(launcher_title, (450+125 - launcher_title.get_width()/2,screen.get_height()-240))
+                screen.blit(launcher_stats, (450 + 5, screen.get_height()-210))
+                screen.blit(launcher_stats2, (450 + 5, screen.get_height()-190))
+                screen.blit(launcher_stats3, (450 + 5, screen.get_height()-170))
+                screen.blit(launcher_stats4, (450 + 5, screen.get_height()-150))
+                screen.blit(launcher_stats5, (450 + 5, screen.get_height()-130))
+
 
             if mouse_pos[0] <= 65 and mouse_pos[0] >= 25 and mouse_pos[1] < screen.get_height() - 120 + 20 and mouse_pos[1] >= screen.get_height() - 120 - 20:
                 pygame.draw.rect(screen, (136, 136, 136), pygame.Rect((80, screen.get_height() - 220), (250, 150)))
@@ -291,9 +371,30 @@ def main():
                 screen.blit(purple_stats4, (80 + 5, screen.get_height()-375))
                 screen.blit(purple_stats5, (80 + 5, screen.get_height()-355))
 
+            pygame.draw.rect(screen, (136, 136, 136), pygame.Rect((0, screen.get_height() - 670), (controls_title1.get_width() + 20, controls_title1.get_height() + 20)))
+            pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((0, screen.get_height() - 670), (controls_title1.get_width() + 20, controls_title1.get_height() + 20)), 4)
+            screen.blit(controls_title1, (10, screen.get_height() - 660))
+            if mouse_pos[0] <= 310 + controls_title1.get_height() and mouse_pos[0] >= 0 and mouse_pos[1] < (screen.get_height()-670) + controls_title1.get_height() + 20 and mouse_pos[1] >= screen.get_height()-670:
+                pygame.draw.rect(screen, (136, 136, 136), pygame.Rect((0, 0), (612, 130)))
+                pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((0, 0), (612, 130)), 4)
+                screen.blit(controls_title1, (25, screen.get_height() - 790))
+                screen.blit(controls_title2, (25, screen.get_height() - 760))
+                screen.blit(controls_title3, (25, screen.get_height() - 740))
+                screen.blit(controls_title4, (25, screen.get_height() - 720))
+                screen.blit(controls_title5, (25, screen.get_height() - 700))
 
+            """
+            this can be used to make a player image for the title screen
+            player_model = pygame.image.load("images/head.png")
+            player_model = pygame.transform.scale(player_model, (60, 60))
+            player_model = pygame.transform.rotate(player_model, 340)
+            screen.blit(player_model, (700, screen.get_height() - 740))
 
-
+            shotgun_model = pygame.image.load("images/shotgun_image.bmp")
+            shotgun_model = pygame.transform.scale(shotgun_model, (82.5, 20))
+            shotgun_model = pygame.transform.rotate(shotgun_model, 330)
+            screen.blit(shotgun_model, (640, screen.get_height() - 740))
+            """
 
 
 
