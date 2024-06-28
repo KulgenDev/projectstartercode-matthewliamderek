@@ -513,13 +513,13 @@ def main():
 
             speed_boost_image = pygame.image.load("images/speed_boost.bmp")
             speed_boost_image = pygame.transform.scale(speed_boost_image, (30, 40))
-            screen.blit(speed_boost_image, (10, 100))
+            screen.blit(speed_boost_image, (10, 55))
 
             try:
                 speed_label = score_font.render(f"{int((player.speed - 3) * 4)}", True, (255, 0, 0))
             except:
                 speed_label = score_font.render("0", True, (255, 0, 0))
-            screen.blit(speed_label, (50, 100))
+            screen.blit(speed_label, (50, 55))
 
             """
             false_life_image = pygame.image.load("images/false_life.bmp")
