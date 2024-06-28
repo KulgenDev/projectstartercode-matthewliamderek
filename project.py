@@ -173,7 +173,7 @@ def main():
     while True:
         final_clock = time.time()
         clock.tick(60)
-        if spawn_time - .00002 > 0:
+        if spawn_time - .00002 > 0 and player.playing:
             spawn_time -= .00015
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
