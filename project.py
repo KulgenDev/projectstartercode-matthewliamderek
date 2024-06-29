@@ -24,7 +24,7 @@ def main():
     pygame.init()
     pygame.mixer.music.load("sfx/Serious Sam 2 (soundtrack) - Sirius-Be Quick Or Be Dead.mp3")
     pygame.mixer.music.set_volume(10)
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
 
     # create a screen
     pygame.display.set_caption("Shape Shooter")
