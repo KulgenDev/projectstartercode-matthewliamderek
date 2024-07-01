@@ -374,7 +374,7 @@ def main():
             pygame.draw.rect(screen, (136, 136, 136), pygame.Rect((0, screen.get_height() - 670), (controls_title1.get_width() + 20, controls_title1.get_height() + 20)))
             pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((0, screen.get_height() - 670), (controls_title1.get_width() + 20, controls_title1.get_height() + 20)), 4)
             screen.blit(controls_title1, (10, screen.get_height() - 660))
-            if mouse_pos[0] <= 310 + controls_title1.get_height() and mouse_pos[0] >= 0 and mouse_pos[1] < (screen.get_height()-670) + controls_title1.get_height() + 20 and mouse_pos[1] >= screen.get_height()-670:
+            if mouse_pos[0] <= 130 and mouse_pos[0] >= 0 and mouse_pos[1] < (screen.get_height()-670) + controls_title1.get_height() + 20 and mouse_pos[1] >= screen.get_height()-670:
                 pygame.draw.rect(screen, (136, 136, 136), pygame.Rect((0, 0), (612, 130)))
                 pygame.draw.rect(screen, (0, 0, 0), pygame.Rect((0, 0), (612, 130)), 4)
                 screen.blit(controls_title1, (25, screen.get_height() - 790))
